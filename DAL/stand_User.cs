@@ -234,12 +234,12 @@ SqlParameter[] parameters = {
         /// <summary>
         /// 通过账号密码获取实体
         /// </summary>
-        /// <param name="Account"></param>
-        /// <param name="Pwd"></param>
+        /// <param name="Account">账号或手机号</param>
+        /// <param name="Pwd">密码</param>
         /// <returns></returns>
 		    public Model.stand_User GetUserByAccountPwd(string account, string pwd)
         {
-            DataTable dt = SqlHelper.Query("select * from stand_User where (Account=@Account or Email=@Account or Phone=@Account) and Password=@Password", new SqlParameter("@Account", account), new SqlParameter("@Password", pwd)).Tables[0];
+            DataTable dt = SqlHelper.Query("select * from stand_User where (Account=@Account or Email=@Account or Phone=@Account) and Password=@Password", new SqlParameter("@Account", PublicClass.EnDeCode.Encode(account)), new SqlParameter("@Password", PublicClass.EnDeCode.Encode(pwd))).Tables[0];
             if (dt.Rows.Count == 1)
             {
                 Model.stand_User userModel = GetModel((int)dt.Rows[0]["ID"]);

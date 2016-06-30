@@ -27,21 +27,33 @@ namespace stand
             this.Dispose();
         }
 
+        private string defaultPwd = @"密码";
+        private string defaultAccount = @"账号/手机号";
         private void btn_UserLogin_Click(object sender, EventArgs e)
         {
             SaveUserInfo();
             
             if (this.comBox_Account.Text != "")
             {
-                if (this.txt_UserPassword.Text != "")
+                if (this.txt_UserPassword.Text != defaultPwd)
                 {
                     try
                     {
-                        DataTable dt = SqlHelper.Query("select * from stand_User").Tables[0];
-                        if (dt.Rows.Count>0)
+                        BLL.stand_User userBll = new BLL.stand_User();
+                        Model.stand_User userModel= userBll.GetUserByAccountPwd(comBox_Account.Text, txt_UserPassword.Text);
+                        if (userModel!=null)
                         {
+                            Session.Account = userModel.Account;
+                            Session.Email = userModel.Email;
+                            Session.Phone = userModel.Phone;
+                            Session.Points = userModel.Points;
+                            Session.Role = userModel.Role;
+                            Session.UserId = userModel.Id;
+                            Session.UserName = userModel.UserName;
+                            this.Dispose();
+                            ChangePwd dk = new ChangePwd();                                              
+                            dk.ShowDialog();
                             
-
                         }
                         else
                         {
@@ -75,12 +87,12 @@ namespace stand
             FileStream fs = new FileStream("data.bin", FileMode.OpenOrCreate);
             BinaryFormatter bf = new BinaryFormatter();
             // 保存在实体类属性中
-            user.LoginID = comBox_Account.Text.Trim();
+            user.LoginID = PublicClass.EnDeCode.Encode(comBox_Account.Text.Trim());
             //保存密码选中状态
             if (chk_KeepInfo.Checked)
-                user.Pwd = txt_UserPassword.Text.Trim();
+                user.Pwd = PublicClass.EnDeCode.Encode(txt_UserPassword.Text.Trim());
             else
-                user.Pwd = "";
+                user.Pwd = PublicClass.EnDeCode.Encode("");
             //选在集合中是否存在用户名 
             if (users.ContainsKey(user.LoginID))
             {
@@ -97,16 +109,27 @@ namespace stand
         private void DisplayUserInfo()
         {
 
-            string key = comBox_Account.Text.Trim();
+            string key = PublicClass.EnDeCode.Encode(comBox_Account.Text.Trim());
             //查找用户Id
             if (users.ContainsKey(key) == false)
-            {
-                txt_UserPassword.Text = "";
+            {               
+                txt_UserPassword.PasswordChar = new char();
+                txt_UserPassword.ForeColor = Color.Silver;
+                txt_UserPassword.Text = defaultPwd;
                 return;
             }
             //查找到赋值
             User user = users[key];
-            txt_UserPassword.Text = user.Pwd;
+            
+            if (string.IsNullOrWhiteSpace(PublicClass.EnDeCode.Decode(user.Pwd)))
+            {
+                SetPwdSilver();
+            }
+            else
+            {
+                txt_UserPassword.Text = PublicClass.EnDeCode.Decode(user.Pwd);
+                SetPwdBlack();
+            }
             // 如有有密码 选中复选框
             chk_KeepInfo.Checked = txt_UserPassword.Text.Trim().Length > 0 ? true : false;
         }
@@ -127,12 +150,14 @@ namespace stand
                 //循环添加到Combox1
                 foreach (User user in users.Values)
                 {
-                    comBox_Account.Items.Add(user.LoginID);
+                    comBox_Account.Items.Add(PublicClass.EnDeCode.Decode(user.LoginID));
                 }
 
                 //combox1 用户名默认选中第一个
                 if (comBox_Account.Items.Count > 0)
                     comBox_Account.SelectedIndex = comBox_Account.Items.Count - 1;
+                comBox_Account.ForeColor = Color.Black;
+                SetPwdBlack();
             }
             fs.Close();
         }
@@ -167,6 +192,55 @@ namespace stand
         {
             Register re = new Register();
             re.ShowDialog();
+        }
+
+        private void txt_UserPassword_Enter(object sender, EventArgs e)
+        {
+            if (txt_UserPassword.Text== defaultPwd)
+            {
+                SetPwdBlack();
+                txt_UserPassword.Text = "";
+            }
+        }
+
+        private void txt_UserPassword_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txt_UserPassword.Text))
+            {
+                SetPwdSilver();
+            }
+
+        }
+
+        private void comBox_Account_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(comBox_Account.Text))
+            {
+                comBox_Account.ForeColor = Color.Silver;
+                comBox_Account.Text = defaultAccount;
+            }
+        }
+
+        private void comBox_Account_Enter(object sender, EventArgs e)
+        {
+            if (comBox_Account.Text == defaultAccount)
+            {               
+                comBox_Account.Text = "";
+            }
+            comBox_Account.ForeColor = Color.Black;
+        }
+
+        private void SetPwdBlack()
+        {
+            txt_UserPassword.PasswordChar = '*';
+            txt_UserPassword.ForeColor = Color.Black;
+        }
+
+        private void SetPwdSilver()
+        {
+            txt_UserPassword.PasswordChar = new char();
+            txt_UserPassword.ForeColor = Color.Silver;
+            txt_UserPassword.Text = defaultPwd;
         }
     }
 }

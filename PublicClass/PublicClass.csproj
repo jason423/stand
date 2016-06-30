@@ -46,6 +46,7 @@
     <Compile Include="EnDeCode.cs" />
     <Compile Include="FTPFileUpDown.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SendEmail.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="SqlHelper.cs" />
     <Compile Include="StaticString.cs" />

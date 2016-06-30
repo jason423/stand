@@ -83,6 +83,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Register.resx">
+      <DependentUpon>Register.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserLogin.resx">
       <DependentUpon>UserLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -97,9 +100,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{26e05234-b428-433e-9b38-82e38453801d}</Project>
-      <Name>DAL</Name>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{c3b0d7d6-2dac-47b8-b01b-87402419f4a9}</Project>
+      <Name>BLL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{5c4b2884-014a-4d59-813a-0d73f1c0506e}</Project>

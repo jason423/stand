@@ -14,9 +14,8 @@ namespace stand
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new UserLogin());
+            UserLogin ul = new UserLogin();
+            ul.ShowDialog();
         }
     }
 }
