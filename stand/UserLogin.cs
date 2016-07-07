@@ -242,5 +242,13 @@ namespace stand
             txt_UserPassword.ForeColor = Color.Silver;
             txt_UserPassword.Text = defaultPwd;
         }
+
+        private void UserLogin_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)//判断回车键
+            {
+                this.btn_UserLogin_Click(sender, e);//触发按钮事件
+            }
+        }
     }
 }

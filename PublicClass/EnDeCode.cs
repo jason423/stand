@@ -9,6 +9,11 @@ namespace PublicClass
     {
         const string KEY_64 = "2A3up9og";//注意了，是8个字符，64位 --  
         const string IV_64 = "r4tupn0k";//可以和上面的不一致 但是一定要是8位  
+        /// <summary>
+        /// 加密
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public static  string Encode(string data)
 
         {
@@ -44,7 +49,11 @@ namespace PublicClass
         }
 
 
-
+        /// <summary>
+        /// 解密
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public static string Decode(string data)
 
         {

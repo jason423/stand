@@ -43,6 +43,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btn_Save = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.txt_Pwd = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.lbl_notice = new System.Windows.Forms.Label();
+            this.txt_Pin = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -53,7 +59,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.ForeColor = System.Drawing.Color.Red;
-            this.label12.Location = new System.Drawing.Point(226, 59);
+            this.label12.Location = new System.Drawing.Point(319, 59);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(11, 12);
             this.label12.TabIndex = 25;
@@ -63,7 +69,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.ForeColor = System.Drawing.Color.Red;
-            this.label11.Location = new System.Drawing.Point(226, 19);
+            this.label11.Location = new System.Drawing.Point(319, 19);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(11, 12);
             this.label11.TabIndex = 24;
@@ -73,7 +79,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.ForeColor = System.Drawing.Color.Red;
-            this.label8.Location = new System.Drawing.Point(461, 21);
+            this.label8.Location = new System.Drawing.Point(319, 134);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(11, 12);
             this.label8.TabIndex = 23;
@@ -83,7 +89,7 @@
             // 
             this.lblStar.AutoSize = true;
             this.lblStar.ForeColor = System.Drawing.Color.Red;
-            this.lblStar.Location = new System.Drawing.Point(226, 98);
+            this.lblStar.Location = new System.Drawing.Point(319, 98);
             this.lblStar.Name = "lblStar";
             this.lblStar.Size = new System.Drawing.Size(11, 12);
             this.lblStar.TabIndex = 22;
@@ -91,36 +97,37 @@
             // 
             // text_EMail
             // 
-            this.text_EMail.Location = new System.Drawing.Point(309, 16);
+            this.text_EMail.Location = new System.Drawing.Point(70, 171);
             this.text_EMail.MaxLength = 20;
             this.text_EMail.Name = "text_EMail";
-            this.text_EMail.Size = new System.Drawing.Size(150, 21);
-            this.text_EMail.TabIndex = 17;
+            this.text_EMail.Size = new System.Drawing.Size(243, 21);
+            this.text_EMail.TabIndex = 5;
             // 
             // text_Password
             // 
             this.text_Password.Location = new System.Drawing.Point(70, 56);
             this.text_Password.MaxLength = 10;
             this.text_Password.Name = "text_Password";
-            this.text_Password.Size = new System.Drawing.Size(150, 21);
-            this.text_Password.TabIndex = 13;
+            this.text_Password.PasswordChar = '*';
+            this.text_Password.Size = new System.Drawing.Size(243, 21);
+            this.text_Password.TabIndex = 2;
             // 
             // text_PhoneNumber
             // 
-            this.text_PhoneNumber.Location = new System.Drawing.Point(70, 95);
+            this.text_PhoneNumber.Location = new System.Drawing.Point(70, 135);
             this.text_PhoneNumber.MaxLength = 20;
             this.text_PhoneNumber.Name = "text_PhoneNumber";
-            this.text_PhoneNumber.Size = new System.Drawing.Size(150, 21);
-            this.text_PhoneNumber.TabIndex = 12;
+            this.text_PhoneNumber.Size = new System.Drawing.Size(243, 21);
+            this.text_PhoneNumber.TabIndex = 4;
             // 
             // btn_Cancel
             // 
             this.btn_Cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btn_Cancel.Location = new System.Drawing.Point(365, 9);
+            this.btn_Cancel.Location = new System.Drawing.Point(214, 3);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(75, 23);
-            this.btn_Cancel.TabIndex = 1;
+            this.btn_Cancel.TabIndex = 9;
             this.btn_Cancel.Text = "取消";
             this.btn_Cancel.UseVisualStyleBackColor = true;
             // 
@@ -129,8 +136,8 @@
             this.text_UserAccount.Location = new System.Drawing.Point(70, 16);
             this.text_UserAccount.MaxLength = 50;
             this.text_UserAccount.Name = "text_UserAccount";
-            this.text_UserAccount.Size = new System.Drawing.Size(150, 21);
-            this.text_UserAccount.TabIndex = 11;
+            this.text_UserAccount.Size = new System.Drawing.Size(243, 21);
+            this.text_UserAccount.TabIndex = 1;
             // 
             // label7
             // 
@@ -144,7 +151,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(247, 21);
+            this.label6.Location = new System.Drawing.Point(8, 176);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(65, 12);
             this.label6.TabIndex = 5;
@@ -153,11 +160,11 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(8, 95);
+            this.label5.Location = new System.Drawing.Point(20, 138);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(65, 12);
+            this.label5.Size = new System.Drawing.Size(53, 12);
             this.label5.TabIndex = 4;
-            this.label5.Text = "电话号码：";
+            this.label5.Text = "手机号：";
             // 
             // label3
             // 
@@ -171,11 +178,11 @@
             // btn_Save
             // 
             this.btn_Save.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_Save.Location = new System.Drawing.Point(273, 9);
+            this.btn_Save.Location = new System.Drawing.Point(70, 3);
             this.btn_Save.Name = "btn_Save";
             this.btn_Save.Size = new System.Drawing.Size(75, 23);
-            this.btn_Save.TabIndex = 0;
-            this.btn_Save.Text = "保存";
+            this.btn_Save.TabIndex = 8;
+            this.btn_Save.Text = "确定";
             this.btn_Save.UseVisualStyleBackColor = true;
             this.btn_Save.Click += new System.EventHandler(this.btn_Save_Click);
             // 
@@ -188,6 +195,12 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.txt_Pwd);
+            this.splitContainer1.Panel1.Controls.Add(this.label2);
+            this.splitContainer1.Panel1.Controls.Add(this.button1);
+            this.splitContainer1.Panel1.Controls.Add(this.lbl_notice);
+            this.splitContainer1.Panel1.Controls.Add(this.txt_Pin);
+            this.splitContainer1.Panel1.Controls.Add(this.label1);
             this.splitContainer1.Panel1.Controls.Add(this.label12);
             this.splitContainer1.Panel1.Controls.Add(this.label11);
             this.splitContainer1.Panel1.Controls.Add(this.label8);
@@ -205,18 +218,79 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.btn_Cancel);
             this.splitContainer1.Panel2.Controls.Add(this.btn_Save);
-            this.splitContainer1.Size = new System.Drawing.Size(481, 257);
-            this.splitContainer1.SplitterDistance = 209;
+            this.splitContainer1.Size = new System.Drawing.Size(340, 305);
+            this.splitContainer1.SplitterDistance = 269;
             this.splitContainer1.TabIndex = 1;
+            // 
+            // txt_Pwd
+            // 
+            this.txt_Pwd.Location = new System.Drawing.Point(70, 95);
+            this.txt_Pwd.MaxLength = 10;
+            this.txt_Pwd.Name = "txt_Pwd";
+            this.txt_Pwd.PasswordChar = '*';
+            this.txt_Pwd.Size = new System.Drawing.Size(243, 21);
+            this.txt_Pwd.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(8, 98);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(65, 12);
+            this.label2.TabIndex = 29;
+            this.label2.Text = "确认密码：";
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(238, 209);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "获取验证码";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // lbl_notice
+            // 
+            this.lbl_notice.AutoSize = true;
+            this.lbl_notice.ForeColor = System.Drawing.Color.Black;
+            this.lbl_notice.Location = new System.Drawing.Point(91, 244);
+            this.lbl_notice.Name = "lbl_notice";
+            this.lbl_notice.Size = new System.Drawing.Size(185, 12);
+            this.lbl_notice.TabIndex = 28;
+            this.lbl_notice.Text = "验证码已发送至邮箱，请注意查收";
+            this.lbl_notice.Visible = false;
+            // 
+            // txt_Pin
+            // 
+            this.txt_Pin.Location = new System.Drawing.Point(70, 210);
+            this.txt_Pin.MaxLength = 20;
+            this.txt_Pin.Name = "txt_Pin";
+            this.txt_Pin.Size = new System.Drawing.Size(162, 21);
+            this.txt_Pin.TabIndex = 6;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(8, 215);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(53, 12);
+            this.label1.TabIndex = 26;
+            this.label1.Text = "验证码：";
             // 
             // Register
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(481, 257);
+            this.ClientSize = new System.Drawing.Size(340, 305);
             this.Controls.Add(this.splitContainer1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MinimizeBox = false;
             this.Name = "Register";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "注册账户";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Register_KeyDown);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -243,5 +317,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btn_Save;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Label lbl_notice;
+        private System.Windows.Forms.TextBox txt_Pin;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txt_Pwd;
+        private System.Windows.Forms.Label label2;
     }
 }

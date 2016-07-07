@@ -33,13 +33,13 @@ namespace DAL
 		{
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("insert into stand_User(");			
-            strSql.Append("Id,UserName,Account,Password,Phone,IdCard,Role,Email,RealName,Points");
+            strSql.Append("UserName,Account,Password,Phone,IdCard,Role,Email,RealName,Points");
 			strSql.Append(") values (");
-            strSql.Append("@Id,@UserName,@Account,@Password,@Phone,@IdCard,@Role,@Email,@RealName,@Points");            
+            strSql.Append("@UserName,@Account,@Password,@Phone,@IdCard,@Role,@Email,@RealName,@Points");            
             strSql.Append(") ");            
             		
 			SqlParameter[] parameters = {
-			            new SqlParameter("@Id", SqlDbType.Int,4) ,            
+			                     
                         new SqlParameter("@UserName", SqlDbType.VarChar,50) ,            
                         new SqlParameter("@Account", SqlDbType.VarChar,20) ,            
                         new SqlParameter("@Password", SqlDbType.VarChar,20) ,            
@@ -52,16 +52,16 @@ namespace DAL
               
             };
 			            
-            parameters[0].Value = model.Id;                        
-            parameters[1].Value = model.UserName;                        
-            parameters[2].Value = model.Account;                        
-            parameters[3].Value = model.Password;                        
-            parameters[4].Value = model.Phone;                        
-            parameters[5].Value = model.IdCard;                        
-            parameters[6].Value = model.Role;                        
-            parameters[7].Value = model.Email;                        
-            parameters[8].Value = model.RealName;                        
-            parameters[9].Value = model.Points;                        
+                                  
+            parameters[0].Value = model.UserName;                        
+            parameters[1].Value = model.Account;                        
+            parameters[2].Value = model.Password;                        
+            parameters[3].Value = model.Phone;                        
+            parameters[4].Value = model.IdCard;                        
+            parameters[5].Value = model.Role;                        
+            parameters[6].Value = model.Email;                        
+            parameters[7].Value = model.RealName;                        
+            parameters[8].Value = model.Points;                        
 			            SqlHelper.ExecuteSql(strSql.ToString(),parameters);
             			
 		}
@@ -239,7 +239,7 @@ SqlParameter[] parameters = {
         /// <returns></returns>
 		    public Model.stand_User GetUserByAccountPwd(string account, string pwd)
         {
-            DataTable dt = SqlHelper.Query("select * from stand_User where (Account=@Account or Email=@Account or Phone=@Account) and Password=@Password", new SqlParameter("@Account", PublicClass.EnDeCode.Encode(account)), new SqlParameter("@Password", PublicClass.EnDeCode.Encode(pwd))).Tables[0];
+            DataTable dt = SqlHelper.Query("select * from stand_User where (Account=@Account or Phone=@Account) and Password=@Password", new SqlParameter("@Account", PublicClass.EnDeCode.Encode(account)), new SqlParameter("@Password", PublicClass.EnDeCode.Encode(pwd))).Tables[0];
             if (dt.Rows.Count == 1)
             {
                 Model.stand_User userModel = GetModel((int)dt.Rows[0]["ID"]);
@@ -250,7 +250,19 @@ SqlParameter[] parameters = {
                 return null;
             }
         }
-
-	}
+        public bool HasUserByAccount(string account)
+        {
+            DataTable dt = SqlHelper.Query("select * from stand_User where Account=@Account or  Phone=@Account", new SqlParameter("@Account", EnDeCode.Encode(account))).Tables[0];
+            if (dt.Rows.Count == 1)
+            {                
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+       
+    }
 }
 

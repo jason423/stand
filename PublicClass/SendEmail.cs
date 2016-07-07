@@ -13,7 +13,7 @@ namespace PublicClass
       /// <param name="emailaddress">目标邮箱地址</param>
       /// <param name="subject">邮件标题</param>
       /// <param name="body">邮件内容</param>
-        public  void Send(string emailaddress,string subject,string body)
+        public  static bool Send(string emailaddress,string subject,string body)
       {
           try
           {
@@ -21,12 +21,12 @@ namespace PublicClass
               if (!regex.IsMatch(emailaddress.Trim()))
               {
                   MessageBox.Show("请输入正确的Email", "Email错误", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                  return;
+                  return false;
               }
               MailMessage mail = new MailMessage();
               mail.Subject = subject;  //标题                     
               string from = "standdownload@163.com";
-              string pwd = "byw2158630001";
+              string pwd = "tsc123456";
               mail.Body = body;  //内容
               mail.From = new MailAddress(from);
               string[] mailNames = (emailaddress + ";").Split(';');
@@ -43,10 +43,12 @@ namespace PublicClass
               smtpClient.Credentials = new System.Net.NetworkCredential(from, pwd);
               smtpClient.Host = "smtp.163.com"; //主机    
               smtpClient.Send(mail);
+              return true;
           }
             catch(Exception ex)
           {
               MessageBox.Show(ex.Message);
+              return false;
           }
       }
     }

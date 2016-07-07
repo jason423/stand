@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.txt_Account = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.chk_ShowPwd = new System.Windows.Forms.CheckBox();
             this.txt_ConfirmNewPwd = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -38,8 +40,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btn_Quit = new System.Windows.Forms.Button();
             this.btn_Confirm = new System.Windows.Forms.Button();
-            this.txt_Account = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -73,13 +73,29 @@
             this.splitContainer1.SplitterDistance = 190;
             this.splitContainer1.TabIndex = 0;
             // 
+            // txt_Account
+            // 
+            this.txt_Account.Location = new System.Drawing.Point(87, 12);
+            this.txt_Account.Name = "txt_Account";
+            this.txt_Account.Size = new System.Drawing.Size(190, 21);
+            this.txt_Account.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(49, 15);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(41, 12);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "账号：";
+            // 
             // chk_ShowPwd
             // 
             this.chk_ShowPwd.AutoSize = true;
             this.chk_ShowPwd.Location = new System.Drawing.Point(205, 175);
             this.chk_ShowPwd.Name = "chk_ShowPwd";
             this.chk_ShowPwd.Size = new System.Drawing.Size(72, 16);
-            this.chk_ShowPwd.TabIndex = 12;
+            this.chk_ShowPwd.TabIndex = 5;
             this.chk_ShowPwd.Text = "显示密码";
             this.chk_ShowPwd.UseVisualStyleBackColor = true;
             this.chk_ShowPwd.CheckedChanged += new System.EventHandler(this.chk_ShowPwd_CheckedChanged);
@@ -90,7 +106,7 @@
             this.txt_ConfirmNewPwd.Name = "txt_ConfirmNewPwd";
             this.txt_ConfirmNewPwd.PasswordChar = '*';
             this.txt_ConfirmNewPwd.Size = new System.Drawing.Size(190, 21);
-            this.txt_ConfirmNewPwd.TabIndex = 11;
+            this.txt_ConfirmNewPwd.TabIndex = 4;
             // 
             // label5
             // 
@@ -107,7 +123,7 @@
             this.txt_OldPwd.Name = "txt_OldPwd";
             this.txt_OldPwd.PasswordChar = '*';
             this.txt_OldPwd.Size = new System.Drawing.Size(190, 21);
-            this.txt_OldPwd.TabIndex = 8;
+            this.txt_OldPwd.TabIndex = 2;
             // 
             // txt_NewPwd
             // 
@@ -115,7 +131,7 @@
             this.txt_NewPwd.Name = "txt_NewPwd";
             this.txt_NewPwd.PasswordChar = '*';
             this.txt_NewPwd.Size = new System.Drawing.Size(190, 21);
-            this.txt_NewPwd.TabIndex = 9;
+            this.txt_NewPwd.TabIndex = 3;
             // 
             // label1
             // 
@@ -152,26 +168,10 @@
             this.btn_Confirm.Location = new System.Drawing.Point(126, 9);
             this.btn_Confirm.Name = "btn_Confirm";
             this.btn_Confirm.Size = new System.Drawing.Size(75, 23);
-            this.btn_Confirm.TabIndex = 0;
+            this.btn_Confirm.TabIndex = 6;
             this.btn_Confirm.Text = "确定";
             this.btn_Confirm.UseVisualStyleBackColor = true;
             this.btn_Confirm.Click += new System.EventHandler(this.btn_Confirm_Click);
-            // 
-            // txt_Account
-            // 
-            this.txt_Account.Location = new System.Drawing.Point(87, 12);
-            this.txt_Account.Name = "txt_Account";
-            this.txt_Account.Size = new System.Drawing.Size(190, 21);
-            this.txt_Account.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(49, 15);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 12);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "账号：";
             // 
             // ChangePwd
             // 
@@ -182,6 +182,7 @@
             this.Name = "ChangePwd";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "修改密码";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ChangePwd_KeyDown);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);

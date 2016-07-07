@@ -90,5 +90,13 @@ namespace stand
                 txt_OldPwd.PasswordChar = '*';
             }
         }
+
+        private void ChangePwd_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)//判断回车键
+            {
+                this.btn_Confirm_Click(sender, e);//触发按钮事件
+            }
+        }
     }
 }
