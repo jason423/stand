@@ -51,7 +51,7 @@ namespace stand
                             Session.UserId = userModel.Id;
                             Session.UserName = userModel.UserName;
                             this.Dispose();
-                            ChangePwd dk = new ChangePwd();                                              
+                            Desktop dk = new Desktop();                                              
                             dk.ShowDialog();
                             
                         }
@@ -182,8 +182,8 @@ namespace stand
 
         private void btn_ChangePwd_Click(object sender, EventArgs e)
         {
-            ChangePwd cp = new ChangePwd();
-            cp.ShowDialog();
+            FindPassword fp = new FindPassword();
+            fp.ShowDialog();
            
             
         }

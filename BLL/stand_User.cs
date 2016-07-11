@@ -152,11 +152,15 @@ namespace BLL
         {
             return dal.GetUserByAccountPwd(account, pwd);
         }
+
+        public Model.stand_User GetUserByAccount(string account)
+        {
+            return dal.GetUserByAccount(account);
+        }
         public bool HasUserByAccount(string account)
         {
             return dal.HasUserByAccount(account);
         }
-       
         #endregion
     }
 }
