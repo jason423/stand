@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using BLL;
+using PublicClass;
 
 namespace stand
 {
@@ -43,9 +44,17 @@ namespace stand
                 Model.stand_User suModel = new Model.stand_User();
                 suModel = suBll.GetUserByAccount(txt_Account.Text);
                 suModel.Password = PublicClass.EnDeCode.Encode(txt_NewPwd.Text);
-                suBll.Update(suModel);                
-                MessageBox.Show(@"密码修改成功,请重新登录", @"提示");
-                Application.Restart();
+                suBll.Update(suModel);
+                if (string.IsNullOrWhiteSpace(Session.Account))
+                {
+                    MessageBox.Show(@"密码修改成功", @"提示");
+                    Dispose();
+                }
+                else
+                {
+                    MessageBox.Show(@"密码修改成功,请重新登录", @"提示");
+                    Application.Restart();
+                }
 
             }
             else

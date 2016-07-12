@@ -55,12 +55,18 @@ namespace stand
                 MessageBox.Show(@"请输入验证码!");
                 return;
             }
+            Regex regexEmail = new Regex(@"[\\w-\\.]+@([\\w-]+\\.)+[a-z]{2,3}");
+            if (!regexEmail.IsMatch(text_EMail.Text.Trim()))
+            {
+                MessageBox.Show(@"请输入正确的邮箱!", @"邮箱错误", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
             if (num.ToString() != txt_Pin.Text)
             {
                 MessageBox.Show(@"验证码错误!");
                 return;
             }
-            Regex regex = new Regex(@"^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$");
+            Regex regex = new Regex(@"^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$");
             if (!regex.IsMatch(text_PhoneNumber.Text.Trim()))
             {
                 MessageBox.Show(@"请输入正确的手机号!", @"手机号错误", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -97,6 +103,12 @@ namespace stand
                     MessageBox.Show(@"请输入邮箱!");
                     return;
                 }
+                Regex regex = new Regex(@"^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$");
+                if (!regex.IsMatch(text_EMail.Text.Trim()))
+                {
+                    MessageBox.Show(@"请输入正确的邮箱!", @"邮箱错误", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }                
                 Random rd = new Random();
                 num = rd.Next(100000, 1000000);
                 string title = "标准";

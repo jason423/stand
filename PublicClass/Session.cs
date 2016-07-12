@@ -9,5 +9,6 @@
         public static string Email { get; set; }
         public static int UserId { get; set; }
         public static int Points { get; set; }
+        
     }
 }
