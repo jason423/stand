@@ -44,6 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddNode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddNode.Designer.cs">
+      <DependentUpon>AddNode.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChangeEmail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +74,18 @@
     <Compile Include="Desktop.Designer.cs">
       <DependentUpon>Desktop.cs</DependentUpon>
     </Compile>
+    <Compile Include="FileUpload.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FileUpload.Designer.cs">
+      <DependentUpon>FileUpload.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FileVerify.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FileVerify.Designer.cs">
+      <DependentUpon>FileVerify.cs</DependentUpon>
+    </Compile>
     <Compile Include="FindPassword.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +100,12 @@
     <Compile Include="Register.Designer.cs">
       <DependentUpon>Register.cs</DependentUpon>
     </Compile>
+    <Compile Include="TreeMgr.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TreeMgr.Designer.cs">
+      <DependentUpon>TreeMgr.cs</DependentUpon>
+    </Compile>
     <Compile Include="User.cs" />
     <Compile Include="UserLogin.cs">
       <SubType>Form</SubType>
@@ -89,6 +113,9 @@
     <Compile Include="UserLogin.designer.cs">
       <DependentUpon>UserLogin.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddNode.resx">
+      <DependentUpon>AddNode.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ChangeEmail.resx">
       <DependentUpon>ChangeEmail.cs</DependentUpon>
     </EmbeddedResource>
@@ -115,6 +142,9 @@
     </Compile>
     <EmbeddedResource Include="Register.resx">
       <DependentUpon>Register.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TreeMgr.resx">
+      <DependentUpon>TreeMgr.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserLogin.resx">
       <DependentUpon>UserLogin.cs</DependentUpon>
