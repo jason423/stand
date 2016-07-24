@@ -29,6 +29,23 @@
         private void InitializeComponent()
         {
             Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
+            Infragistics.Win.UltraWinGrid.UltraGridBand ultraGridBand1 = new Infragistics.Win.UltraWinGrid.UltraGridBand("Band 0", -1);
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn1 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("ID");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn2 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("StandardCode");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn3 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("ClassifyOne");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn4 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("ClassifyTwo");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn5 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("ClassifyThree");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn6 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("StandardNo");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn7 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("YearNo");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn8 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("CN_Name");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn9 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("EN_Name");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn10 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Remark");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn12 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("FileName");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn13 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("treeId");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn14 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("FTPFileName");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn15 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Point");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn16 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("UploadTime");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn17 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("UploadUser");
             Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance3 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance4 = new Infragistics.Win.Appearance();
@@ -41,17 +58,23 @@
             Infragistics.Win.Appearance appearance11 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance12 = new Infragistics.Win.Appearance();
             Infragistics.Win.ValueList valueList1 = new Infragistics.Win.ValueList(18670309);
-            Infragistics.Win.ValueListItem valueListItem5 = new Infragistics.Win.ValueListItem();
-            Infragistics.Win.ValueListItem valueListItem6 = new Infragistics.Win.ValueListItem();
+            Infragistics.Win.ValueListItem valueListItem1 = new Infragistics.Win.ValueListItem();
+            Infragistics.Win.ValueListItem valueListItem2 = new Infragistics.Win.ValueListItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.grid_StandardMgr = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.btn_download = new System.Windows.Forms.Button();
             this.btn_upload = new System.Windows.Forms.Button();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.tree = new System.Windows.Forms.TreeView();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid_StandardMgr)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -69,8 +92,8 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.btn_download);
             this.splitContainer1.Panel2.Controls.Add(this.btn_upload);
-            this.splitContainer1.Size = new System.Drawing.Size(802, 565);
-            this.splitContainer1.SplitterDistance = 515;
+            this.splitContainer1.Size = new System.Drawing.Size(822, 658);
+            this.splitContainer1.SplitterDistance = 599;
             this.splitContainer1.TabIndex = 1;
             // 
             // grid_StandardMgr
@@ -78,6 +101,59 @@
             appearance1.BackColor = System.Drawing.SystemColors.Window;
             appearance1.BorderColor = System.Drawing.SystemColors.InactiveCaption;
             this.grid_StandardMgr.DisplayLayout.Appearance = appearance1;
+            ultraGridColumn1.Header.VisiblePosition = 0;
+            ultraGridColumn1.Hidden = true;
+            ultraGridColumn2.Header.Caption = "标准编码";
+            ultraGridColumn2.Header.VisiblePosition = 1;
+            ultraGridColumn3.Header.Caption = "一级分类";
+            ultraGridColumn3.Header.VisiblePosition = 2;
+            ultraGridColumn3.Width = 84;
+            ultraGridColumn4.Header.Caption = "二级分类";
+            ultraGridColumn4.Header.VisiblePosition = 3;
+            ultraGridColumn4.Width = 97;
+            ultraGridColumn5.Header.Caption = "三级分类";
+            ultraGridColumn5.Header.VisiblePosition = 4;
+            ultraGridColumn5.Width = 91;
+            ultraGridColumn6.Header.Caption = "标准号";
+            ultraGridColumn6.Header.VisiblePosition = 5;
+            ultraGridColumn7.Header.Caption = "年代号";
+            ultraGridColumn7.Header.VisiblePosition = 6;
+            ultraGridColumn8.Header.Caption = "中文名称";
+            ultraGridColumn8.Header.VisiblePosition = 10;
+            ultraGridColumn9.Header.Caption = "英文名称";
+            ultraGridColumn9.Header.VisiblePosition = 11;
+            ultraGridColumn10.Header.Caption = "备注";
+            ultraGridColumn10.Header.VisiblePosition = 13;
+            ultraGridColumn12.Header.Caption = "文件名称";
+            ultraGridColumn12.Header.VisiblePosition = 12;
+            ultraGridColumn13.Header.VisiblePosition = 14;
+            ultraGridColumn13.Hidden = true;
+            ultraGridColumn14.Header.VisiblePosition = 15;
+            ultraGridColumn14.Hidden = true;
+            ultraGridColumn15.Header.Caption = "所需分数";
+            ultraGridColumn15.Header.VisiblePosition = 9;
+            ultraGridColumn16.Header.Caption = "上传时间";
+            ultraGridColumn16.Header.VisiblePosition = 8;
+            ultraGridColumn17.Header.Caption = "上传人";
+            ultraGridColumn17.Header.VisiblePosition = 7;
+            ultraGridBand1.Columns.AddRange(new object[] {
+            ultraGridColumn1,
+            ultraGridColumn2,
+            ultraGridColumn3,
+            ultraGridColumn4,
+            ultraGridColumn5,
+            ultraGridColumn6,
+            ultraGridColumn7,
+            ultraGridColumn8,
+            ultraGridColumn9,
+            ultraGridColumn10,
+            ultraGridColumn12,
+            ultraGridColumn13,
+            ultraGridColumn14,
+            ultraGridColumn15,
+            ultraGridColumn16,
+            ultraGridColumn17});
+            this.grid_StandardMgr.DisplayLayout.BandsSerializer.Add(ultraGridBand1);
             this.grid_StandardMgr.DisplayLayout.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
             this.grid_StandardMgr.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
             appearance2.BackColor = System.Drawing.SystemColors.ActiveBorder;
@@ -135,13 +211,13 @@
             this.grid_StandardMgr.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
             this.grid_StandardMgr.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
             valueList1.Key = "LanguageType";
-            valueListItem5.DataValue = "EN";
-            valueListItem5.DisplayText = "EN";
-            valueListItem6.DataValue = "CH";
-            valueListItem6.DisplayText = "CH";
+            valueListItem1.DataValue = "EN";
+            valueListItem1.DisplayText = "EN";
+            valueListItem2.DataValue = "CH";
+            valueListItem2.DisplayText = "CH";
             valueList1.ValueListItems.AddRange(new Infragistics.Win.ValueListItem[] {
-            valueListItem5,
-            valueListItem6});
+            valueListItem1,
+            valueListItem2});
             this.grid_StandardMgr.DisplayLayout.ValueLists.AddRange(new Infragistics.Win.ValueList[] {
             valueList1});
             this.grid_StandardMgr.DisplayLayout.ViewStyleBand = Infragistics.Win.UltraWinGrid.ViewStyleBand.OutlookGroupBy;
@@ -149,50 +225,83 @@
             this.grid_StandardMgr.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.grid_StandardMgr.Location = new System.Drawing.Point(0, 0);
             this.grid_StandardMgr.Name = "grid_StandardMgr";
-            this.grid_StandardMgr.Size = new System.Drawing.Size(802, 515);
-            this.grid_StandardMgr.TabIndex = 0;
+            this.grid_StandardMgr.Size = new System.Drawing.Size(822, 599);
+            this.grid_StandardMgr.TabIndex = 2;
             this.grid_StandardMgr.Text = "ultraGrid1";
             // 
             // btn_download
             // 
             this.btn_download.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_download.Location = new System.Drawing.Point(616, 10);
+            this.btn_download.Location = new System.Drawing.Point(636, 19);
             this.btn_download.Name = "btn_download";
             this.btn_download.Size = new System.Drawing.Size(75, 23);
             this.btn_download.TabIndex = 4;
             this.btn_download.Text = "下载标准";
             this.btn_download.UseVisualStyleBackColor = true;
+            this.btn_download.Click += new System.EventHandler(this.btn_download_Click);
             // 
             // btn_upload
             // 
             this.btn_upload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_upload.Location = new System.Drawing.Point(709, 10);
+            this.btn_upload.Location = new System.Drawing.Point(729, 19);
             this.btn_upload.Name = "btn_upload";
             this.btn_upload.Size = new System.Drawing.Size(75, 23);
             this.btn_upload.TabIndex = 0;
             this.btn_upload.Text = "上传标准";
             this.btn_upload.UseVisualStyleBackColor = true;
+            this.btn_upload.Click += new System.EventHandler(this.btn_upload_Click);
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.tree);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.splitContainer1);
+            this.splitContainer2.Size = new System.Drawing.Size(1170, 658);
+            this.splitContainer2.SplitterDistance = 344;
+            this.splitContainer2.TabIndex = 2;
+            // 
+            // tree
+            // 
+            this.tree.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tree.Location = new System.Drawing.Point(0, 0);
+            this.tree.Name = "tree";
+            this.tree.Size = new System.Drawing.Size(344, 658);
+            this.tree.TabIndex = 0;
             // 
             // FileUpload
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.splitContainer2);
             this.Name = "FileUpload";
-            this.Size = new System.Drawing.Size(802, 565);
+            this.Size = new System.Drawing.Size(1170, 658);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grid_StandardMgr)).EndInit();
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private Infragistics.Win.UltraWinGrid.UltraGrid grid_StandardMgr;
         private System.Windows.Forms.Button btn_download;
         private System.Windows.Forms.Button btn_upload;
+        private Infragistics.Win.UltraWinGrid.UltraGrid grid_StandardMgr;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.TreeView tree;
     }
 }

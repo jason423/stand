@@ -12,7 +12,7 @@ namespace PublicClass
 {
     public class FTPFileUpDown
     {
-        private static DataTable dt = SqlHelper.Query("select Value from TSC_MDM_ConfigValue where ConfigName in ('FTPIP','FTPusername','FTPpwd')").Tables[0];
+        private static DataTable dt = SqlHelper.Query("select Value from stand_ConfigValue where ConfigName in ('FTPIP','FTPusername','FTPpwd')").Tables[0];
         private static string serverIP = dt.Rows[0][0].ToString();
         private static string userName = dt.Rows[1][0].ToString();
         private static string password = dt.Rows[2][0].ToString();
@@ -23,7 +23,7 @@ namespace PublicClass
         /// <param name="filename">选择的文件路径</param>
         /// <param name="FolderName">从数据库中获取的FTP文件夹名称</param>
         /// <returns></returns>
-        public static FtpStatusCode UploadFileInFTP(string filename, string FolderName)
+        public static FtpStatusCode UploadFileInFTP(string filename, string FolderName, string changeName)
         {
             Stream requestStream = null;
             FileStream fileStream = null;
@@ -35,7 +35,7 @@ namespace PublicClass
             try
             {
 
-                uploadurl = "ftp://" + serverIP + "/" + FolderName + "/" + Path.GetFileName(filename);
+                uploadurl = "ftp://" + serverIP + "/" + FolderName + "/" + changeName;
                 uploadRequest = (FtpWebRequest)WebRequest.Create(uploadurl);
                 uploadRequest.Method = WebRequestMethods.Ftp.UploadFile;
                 uploadRequest.Proxy = null;
@@ -148,8 +148,9 @@ namespace PublicClass
         /// </summary>
         /// <param name="filename">保存目标文件名（绝对路径）</param>
         /// <param name="FolderName">目标FTP文件夹名称</param>
+        /// /// <param name="FTPName">放在FTP里面的文件名称</param>
         /// <returns></returns>
-        public static int DownloadFtp(string filename, string FolderName)
+        public static int DownloadFtp(string filename, string FolderName, string FTPName)
         {
             FtpWebRequest reqFTP;
 
@@ -158,7 +159,7 @@ namespace PublicClass
             try
             {
 
-                url = "ftp://" + serverIP + "/" + FolderName + "/" + Path.GetFileName(filename);
+                url = "ftp://" + serverIP + "/" + FolderName + "/" + FTPName;
 
                 FileStream outputStream = new FileStream(filename, FileMode.Create);
                 reqFTP = (FtpWebRequest)FtpWebRequest.Create(new Uri(url));

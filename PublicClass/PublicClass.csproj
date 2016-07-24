@@ -50,6 +50,7 @@
     <Compile Include="Session.cs" />
     <Compile Include="SqlHelper.cs" />
     <Compile Include="StaticString.cs" />
+    <Compile Include="TreeMethod.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

@@ -14,6 +14,12 @@ namespace stand
         public FileVerify()
         {
             InitializeComponent();
+            InitData();
+        }
+
+        private void InitData()
+        {
+            
         }
     }
 }

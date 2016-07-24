@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinGrid.UltraGridBand ultraGridBand1 = new Infragistics.Win.UltraWinGrid.UltraGridBand("Band 0", -1);
             Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn1 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("ID");
@@ -41,7 +40,12 @@
             Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn8 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("CN_Name");
             Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn9 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("EN_Name");
             Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn10 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Remark");
-            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn11 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("StandardName");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn12 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("FileName");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn13 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("treeId");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn14 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("FTPFileName");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn15 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Point");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn16 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("UploadTime");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn17 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("UploadUser");
             Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance3 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance4 = new Infragistics.Win.Appearance();
@@ -54,10 +58,9 @@
             Infragistics.Win.Appearance appearance11 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance12 = new Infragistics.Win.Appearance();
             Infragistics.Win.ValueList valueList1 = new Infragistics.Win.ValueList(18670309);
-            Infragistics.Win.ValueListItem valueListItem5 = new Infragistics.Win.ValueListItem();
-            Infragistics.Win.ValueListItem valueListItem6 = new Infragistics.Win.ValueListItem();
+            Infragistics.Win.ValueListItem valueListItem1 = new Infragistics.Win.ValueListItem();
+            Infragistics.Win.ValueListItem valueListItem2 = new Infragistics.Win.ValueListItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.ultraGridBagLayoutManager1 = new Infragistics.Win.Misc.UltraGridBagLayoutManager(this.components);
             this.grid_StandardMgr = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.btn_Cancel = new System.Windows.Forms.Button();
             this.btn_OK = new System.Windows.Forms.Button();
@@ -65,7 +68,6 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ultraGridBagLayoutManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grid_StandardMgr)).BeginInit();
             this.SuspendLayout();
             // 
@@ -111,13 +113,23 @@
             ultraGridColumn7.Header.Caption = "年代号";
             ultraGridColumn7.Header.VisiblePosition = 6;
             ultraGridColumn8.Header.Caption = "中文名称";
-            ultraGridColumn8.Header.VisiblePosition = 7;
+            ultraGridColumn8.Header.VisiblePosition = 10;
             ultraGridColumn9.Header.Caption = "英文名称";
-            ultraGridColumn9.Header.VisiblePosition = 8;
+            ultraGridColumn9.Header.VisiblePosition = 11;
             ultraGridColumn10.Header.Caption = "备注";
-            ultraGridColumn10.Header.VisiblePosition = 9;
-            ultraGridColumn11.Header.Caption = "标准文件名称";
-            ultraGridColumn11.Header.VisiblePosition = 10;
+            ultraGridColumn10.Header.VisiblePosition = 13;
+            ultraGridColumn12.Header.Caption = "文件名称";
+            ultraGridColumn12.Header.VisiblePosition = 12;
+            ultraGridColumn13.Header.VisiblePosition = 14;
+            ultraGridColumn13.Hidden = true;
+            ultraGridColumn14.Header.VisiblePosition = 15;
+            ultraGridColumn14.Hidden = true;
+            ultraGridColumn15.Header.Caption = "所需分数";
+            ultraGridColumn15.Header.VisiblePosition = 9;
+            ultraGridColumn16.Header.Caption = "上传时间";
+            ultraGridColumn16.Header.VisiblePosition = 8;
+            ultraGridColumn17.Header.Caption = "上传人";
+            ultraGridColumn17.Header.VisiblePosition = 7;
             ultraGridBand1.Columns.AddRange(new object[] {
             ultraGridColumn1,
             ultraGridColumn2,
@@ -129,7 +141,12 @@
             ultraGridColumn8,
             ultraGridColumn9,
             ultraGridColumn10,
-            ultraGridColumn11});
+            ultraGridColumn12,
+            ultraGridColumn13,
+            ultraGridColumn14,
+            ultraGridColumn15,
+            ultraGridColumn16,
+            ultraGridColumn17});
             this.grid_StandardMgr.DisplayLayout.BandsSerializer.Add(ultraGridBand1);
             this.grid_StandardMgr.DisplayLayout.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
             this.grid_StandardMgr.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
@@ -188,13 +205,13 @@
             this.grid_StandardMgr.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
             this.grid_StandardMgr.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
             valueList1.Key = "LanguageType";
-            valueListItem5.DataValue = "EN";
-            valueListItem5.DisplayText = "EN";
-            valueListItem6.DataValue = "CH";
-            valueListItem6.DisplayText = "CH";
+            valueListItem1.DataValue = "EN";
+            valueListItem1.DisplayText = "EN";
+            valueListItem2.DataValue = "CH";
+            valueListItem2.DisplayText = "CH";
             valueList1.ValueListItems.AddRange(new Infragistics.Win.ValueListItem[] {
-            valueListItem5,
-            valueListItem6});
+            valueListItem1,
+            valueListItem2});
             this.grid_StandardMgr.DisplayLayout.ValueLists.AddRange(new Infragistics.Win.ValueList[] {
             valueList1});
             this.grid_StandardMgr.DisplayLayout.ViewStyleBand = Infragistics.Win.UltraWinGrid.ViewStyleBand.OutlookGroupBy;
@@ -237,7 +254,6 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ultraGridBagLayoutManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grid_StandardMgr)).EndInit();
             this.ResumeLayout(false);
 
@@ -249,6 +265,5 @@
         private Infragistics.Win.UltraWinGrid.UltraGrid grid_StandardMgr;
         private System.Windows.Forms.Button btn_Cancel;
         private System.Windows.Forms.Button btn_OK;
-        private Infragistics.Win.Misc.UltraGridBagLayoutManager ultraGridBagLayoutManager1;
     }
 }
