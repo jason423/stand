@@ -46,6 +46,7 @@
             Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn15 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Point");
             Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn16 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("UploadTime");
             Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn17 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("UploadUser");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn11 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("PID");
             Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance3 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance4 = new Infragistics.Win.Appearance();
@@ -136,6 +137,8 @@
             ultraGridColumn16.Header.VisiblePosition = 8;
             ultraGridColumn17.Header.Caption = "上传人";
             ultraGridColumn17.Header.VisiblePosition = 7;
+            ultraGridColumn11.Header.VisiblePosition = 16;
+            ultraGridColumn11.Hidden = true;
             ultraGridBand1.Columns.AddRange(new object[] {
             ultraGridColumn1,
             ultraGridColumn2,
@@ -152,7 +155,8 @@
             ultraGridColumn14,
             ultraGridColumn15,
             ultraGridColumn16,
-            ultraGridColumn17});
+            ultraGridColumn17,
+            ultraGridColumn11});
             this.grid_StandardMgr.DisplayLayout.BandsSerializer.Add(ultraGridBand1);
             this.grid_StandardMgr.DisplayLayout.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
             this.grid_StandardMgr.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
@@ -178,7 +182,9 @@
             appearance6.BackColor = System.Drawing.SystemColors.Highlight;
             appearance6.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.grid_StandardMgr.DisplayLayout.Override.ActiveRowAppearance = appearance6;
-            this.grid_StandardMgr.DisplayLayout.Override.AllowAddNew = Infragistics.Win.UltraWinGrid.AllowAddNew.TemplateOnBottom;
+            this.grid_StandardMgr.DisplayLayout.Override.AllowAddNew = Infragistics.Win.UltraWinGrid.AllowAddNew.No;
+            this.grid_StandardMgr.DisplayLayout.Override.AllowDelete = Infragistics.Win.DefaultableBoolean.False;
+            this.grid_StandardMgr.DisplayLayout.Override.AllowUpdate = Infragistics.Win.DefaultableBoolean.False;
             this.grid_StandardMgr.DisplayLayout.Override.BorderStyleCell = Infragistics.Win.UIElementBorderStyle.Dotted;
             this.grid_StandardMgr.DisplayLayout.Override.BorderStyleRow = Infragistics.Win.UIElementBorderStyle.Dotted;
             appearance7.BackColor = System.Drawing.SystemColors.Window;
@@ -275,6 +281,7 @@
             this.tree.Name = "tree";
             this.tree.Size = new System.Drawing.Size(344, 658);
             this.tree.TabIndex = 0;
+            this.tree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tree_AfterSelect);
             // 
             // FileUpload
             // 

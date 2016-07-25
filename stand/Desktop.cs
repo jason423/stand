@@ -16,10 +16,13 @@ namespace stand
         {
             InitializeComponent();
             toollbl_Account.Text = @"当前登录账号:"+PublicClass.EnDeCode.Decode(Session.Account);
-            if (Session.Role == "0")
+            if (Session.Role == "1")
             {
                 系统菜单ToolStripMenuItem.Visible = true;
             }
+            FileUpload fu = new FileUpload();
+            fu.Dock = DockStyle.Fill;
+            this.splitContainer1.Panel1.Controls.Add(fu);
         }
 
         private void 退出ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -53,6 +56,22 @@ namespace stand
 
             this.splitContainer1.Panel1.Controls.Clear();
             this.splitContainer1.Panel1.Controls.Add(tree);
+        }
+
+        private void 我的上传ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MyFiles mf=new MyFiles();
+            mf.Dock = DockStyle.Fill;
+            this.splitContainer1.Panel1.Controls.Clear();
+            this.splitContainer1.Panel1.Controls.Add(mf);
+        }
+
+        private void 文件审批ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FileVerify fv = new FileVerify();
+            fv.Dock = DockStyle.Fill;
+            this.splitContainer1.Panel1.Controls.Clear();
+            this.splitContainer1.Panel1.Controls.Add(fv);
         }
     }
 }

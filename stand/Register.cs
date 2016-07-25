@@ -89,6 +89,8 @@ namespace stand
             suModel.Password = PublicClass.EnDeCode.Encode(txt_Pwd.Text);
             suModel.Phone = PublicClass.EnDeCode.Encode(text_PhoneNumber.Text);
             //初始化积分
+            suModel.Points = 10;
+            suModel.Role = "2";
             suBll.Add(suModel);
             MessageBox.Show(@"注册成功!", @"注册成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Dispose();

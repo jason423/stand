@@ -13,13 +13,13 @@ namespace PublicClass
         }
 
         public void GetCodeByTreeId(DataTable dt)
-        {
-            dt.Columns.Add("ClassifyOne");
-            dt.Columns.Add("ClassifyTwo");
-            dt.Columns.Add("ClassifyThree");
-            foreach (var dr in (dt.Rows))
+        {           
+            foreach (DataRow dr in (dt.Rows))
             {
-                
+                DataRow drTwo =dtTree.Select("Id='" +dr["PID"].ToString()+ "'")[0];
+                dr["ClassifyTwo"] = drTwo["Code"].ToString();
+                DataRow drThree = dtTree.Select("Id='" + drTwo["PID"].ToString() + "'")[0];
+                dr["ClassifyOne"] = drThree["Code"].ToString();
             }
         }
 
