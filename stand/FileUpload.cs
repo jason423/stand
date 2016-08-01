@@ -19,6 +19,7 @@ namespace stand
         {
             InitializeComponent();
             InitTreeData();
+            tree.SelectedNode = null;
             InitTable();
         }
         public static DataTable Tree;
@@ -81,7 +82,7 @@ namespace stand
             DataTable dt = SqlHelper.Query(@"select a.*,b.Code as ClassifyThree,b.PID,null as ClassifyOne ,null as ClassifyTwo,c.Account from stand_File a left join stand_Tree b on a.treeId=b.ID left join stand_User c on a.UploadUser=c.Id where a.IsDel=0 and a.IsVerify=1").Tables[0];
             for(int i=0;i<dt.Rows.Count;i++)
             { 
-                dt.Rows[i]["StandardCode"] = " "+dt.Rows[i]["StandardCode"].ToString().PadLeft(10, '0');
+                dt.Rows[i]["StandardCode"] = dt.Rows[i]["StandardCode"].ToString().PadLeft(10, '0');
             }
             dt.AcceptChanges();
             grid_StandardMgr.DataSource = dt;
@@ -202,6 +203,11 @@ namespace stand
                 if (tree.SelectedNode.FirstNode == null)
                 {
                     DataTable dt = SqlHelper.Query(@"select a.*,b.Code as ClassifyThree,b.PID,null as ClassifyOne ,null as ClassifyTwo from stand_File a left join stand_Tree b on a.treeId=b.ID where a.IsDel=0 and a.IsVerify=1 and treeId=@treeId", new SqlParameter("@treeId", ((DataRow)tree.SelectedNode.Tag)["Id"])).Tables[0];
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        dt.Rows[i]["StandardCode"] = dt.Rows[i]["StandardCode"].ToString().PadLeft(10, '0');
+                    }
+                    dt.AcceptChanges();
                     grid_StandardMgr.DataSource = dt;
                 }
             }

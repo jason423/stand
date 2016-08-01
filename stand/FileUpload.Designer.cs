@@ -49,7 +49,7 @@
             Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn18 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("IsDel");
             Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn19 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("IsVerify");
             Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn20 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Account");
-            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn2 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("StandardCode");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn21 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("StandardCode");
             Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance3 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance4 = new Infragistics.Win.Appearance();
@@ -148,8 +148,8 @@
             ultraGridColumn19.Hidden = true;
             ultraGridColumn20.Header.Caption = "上传人";
             ultraGridColumn20.Header.VisiblePosition = 6;
-            ultraGridColumn2.Header.Caption = "标准编码";
-            ultraGridColumn2.Header.VisiblePosition = 1;
+            ultraGridColumn21.Header.Caption = "标准编码";
+            ultraGridColumn21.Header.VisiblePosition = 1;
             ultraGridBand1.Columns.AddRange(new object[] {
             ultraGridColumn1,
             ultraGridColumn3,
@@ -170,7 +170,7 @@
             ultraGridColumn18,
             ultraGridColumn19,
             ultraGridColumn20,
-            ultraGridColumn2});
+            ultraGridColumn21});
             this.grid_StandardMgr.DisplayLayout.BandsSerializer.Add(ultraGridBand1);
             this.grid_StandardMgr.DisplayLayout.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
             this.grid_StandardMgr.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
