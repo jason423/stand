@@ -78,39 +78,56 @@ namespace stand
 
         private void InitTable()
         {
-            DataTable dt = SqlHelper.Query(@"select *,b.Code as ClassifyThree,b.PID,null as ClassifyOne ,null as ClassifyTwo from stand_File a left join stand_Tree b on a.treeId=b.ID where a.IsDel=0 and a.IsVerify=1").Tables[0];
+            DataTable dt = SqlHelper.Query(@"select a.*,b.Code as ClassifyThree,b.PID,null as ClassifyOne ,null as ClassifyTwo,c.Account from stand_File a left join stand_Tree b on a.treeId=b.ID left join stand_User c on a.UploadUser=c.Id where a.IsDel=0 and a.IsVerify=1").Tables[0];
+            for(int i=0;i<dt.Rows.Count;i++)
+            { 
+                dt.Rows[i]["StandardCode"] = " "+dt.Rows[i]["StandardCode"].ToString().PadLeft(10, '0');
+            }
+            dt.AcceptChanges();
             grid_StandardMgr.DataSource = dt;
 
         }
         private void btn_upload_Click(object sender, EventArgs e)
         {
-            if (tree.SelectedNode == null)
+            try
             {
-                MessageBox.Show(@"请先在树中选择分类", @"提示");
-                return;
+
+
+                if (tree.SelectedNode == null)
+                {
+                    MessageBox.Show(@"请先在树中选择分类", @"提示");
+                    return;
+                }
+                if (tree.SelectedNode.FirstNode != null)
+                {
+                    MessageBox.Show(@"分类树必须选择最底层节点", @"提示");
+                    return;
+                }
+                FileInfo fi = new FileInfo();
+                if (fi.ShowDialog() == DialogResult.OK)
+                {
+                    string changeName = DateTime.Now.ToString("yyyyMMddHHmmss") + new Random().Next(1, 10000) + Path.GetExtension(fi.FilePath);
+                    FTPFileUpDown.UploadFileInFTP(fi.FilePath, "standUploadFile", changeName);
+                    DataTable dt = SqlHelper.Query("select max(StandardCode) from stand_File").Tables[0];
+                    string standardCode = (int.Parse(dt.Rows[0][0].ToString()) + 1).ToString();
+                    string sql =
+                    @"insert into stand_File(treeId,StandardNo,YearNo,CN_Name,EN_Name,StandardCode,Remark,FileName,FTPFileName,Point,UploadTime,UploadUser,IsDel,IsVerify) 
+                            values(@treeId,@StandardNo,@YearNo,@CN_Name,@EN_Name,@StandardCode,@Remark,@FileName,@FTPFileName,2,'" + DateTime.Now + "'," + Session.UserId + ",0,0)";
+                    SqlHelper.Query(sql, new SqlParameter("@treeId", ((DataRow)tree.SelectedNode.Tag)["ID"].ToString()), new SqlParameter("@StandardNo", fi.StandardNo), new SqlParameter("@YearNo", fi.Year),
+                        new SqlParameter("@CN_Name", fi.CNName), new SqlParameter("@EN_Name", fi.EN_Name),
+                        new SqlParameter("@StandardCode", standardCode), new SqlParameter("@Remark", fi.Remark),
+                        new SqlParameter("@FileName", Path.GetFileName(fi.FilePath)), new SqlParameter("@FTPFileName", changeName));
+                    MessageBox.Show(@"上传成功,请等待审核通过", @"提示");
+                    BLL.stand_User suBll = new stand_User();
+                    Model.stand_User suModel = suBll.GetModel(Session.UserId);
+                    suModel.Points += 2;
+                    suBll.Update(suModel);
+                }
             }
-            if (tree.SelectedNode.FirstNode != null)
+            catch (Exception ex)
             {
-                MessageBox.Show(@"分类树必须选择最底层节点", @"提示");
-                return;
-            }
-            FileInfo fi = new FileInfo();
-            if (fi.ShowDialog() == DialogResult.OK)
-            {
-                string changeName = DateTime.Now.ToString("yyyyMMddHHmmss") + new Random().Next(1, 10000) + "." + Path.GetExtension(fi.FilePath);
-                FTPFileUpDown.UploadFileInFTP(fi.FilePath, "standUploadFile", changeName);
-                string sql =
-                    @"insert into stand_File(treeId,,StandardNo,YearNo,CN_Name,EN_Name,StandardCode,Remark,FileName,FTPFileName,Point,UploadTime,UploadUser,IsDel,IsVerify) 
-                            values(@treeId,,@StandardNo,@YearNo,@CN_Name,@EN_Name,@StandardCode,@Remark,@FileName,@FTPFileName,2," + DateTime.Now + "," + PublicClass.EnDeCode.Decode(Session.Account) + ",0,0)";
-                SqlHelper.Query(sql, new SqlParameter("@treeId", ((DataRow)tree.SelectedNode.Tag)["ID"].ToString()), new SqlParameter("@StandardNo", fi.StandardNo), new SqlParameter("@YearNo", fi.Year),
-                    new SqlParameter("@CN_Name", fi.CNName), new SqlParameter("@EN_Name", fi.EN_Name),
-                    new SqlParameter("@StandardCode", fi.StandardCode), new SqlParameter("@Remark", fi.Remark),
-                    new SqlParameter("@FileName", Path.GetFileName(fi.FilePath)), new SqlParameter("@FTPFileName", changeName));
-                MessageBox.Show(@"上传成功,请等待审核通过", @"提示");
-                BLL.stand_User suBll = new stand_User();
-                Model.stand_User suModel = suBll.GetModel(Session.UserId);
-                suModel.Points += 2;
-                suBll.Update(suModel);
+
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -120,11 +137,9 @@ namespace stand
             {
                 try
                 {
-                    if (Session.Points < int.Parse(grid_StandardMgr.ActiveRow.Cells["Points"].ToString()))
-                    {
-                        MessageBox.Show(@"分数不够,请上传文件获取分数", @"提示");
-                    }
-                    else
+                    DataTable dt = SqlHelper.Query("select * from stand_UserDowload where FIleID=@FIleID and UserID=@UserID", new SqlParameter("@FIleID", grid_StandardMgr.ActiveRow.Cells["Id"])
+                        , new SqlParameter("@UserID", Session.UserId)).Tables[0];
+                    if (dt.Rows.Count > 0)
                     {
                         SaveFileDialog sfd = new SaveFileDialog();
                         sfd.CheckFileExists = false;
@@ -137,16 +152,36 @@ namespace stand
                                 grid_StandardMgr.ActiveRow.Cells["FTPFileName"].Value.ToString());
                             File.SetAttributes(sfd.FileName, FileAttributes.ReadOnly);
                             MessageBox.Show(@"下载成功", @"提示");
-                            BLL.stand_User suBll = new stand_User();
-                            Model.stand_User suModel = suBll.GetModel(Session.UserId);
-                            suModel.Points -= 2;
-                            suBll.Update(suModel);
+
                         }
-
                     }
-                   
+                    else
+                    {
+                        if (Session.Points < int.Parse(grid_StandardMgr.ActiveRow.Cells["Points"].ToString()))
+                        {
+                            MessageBox.Show(@"分数不够,请上传文件获取分数", @"提示");
+                        }
+                        else
+                        {
+                            SaveFileDialog sfd = new SaveFileDialog();
+                            sfd.CheckFileExists = false;
+                            sfd.CheckPathExists = true;
+                            sfd.Filter = @"所有文件(*.*)|*.*";
+                            sfd.FileName = grid_StandardMgr.ActiveRow.Cells["FileName"].Value.ToString();
+                            if (sfd.ShowDialog() == DialogResult.OK)
+                            {
+                                FTPFileUpDown.DownloadFtp(sfd.FileName, "standUploadFile",
+                                    grid_StandardMgr.ActiveRow.Cells["FTPFileName"].Value.ToString());
+                                File.SetAttributes(sfd.FileName, FileAttributes.ReadOnly);
+                                MessageBox.Show(@"下载成功", @"提示");
+                                BLL.stand_User suBll = new stand_User();
+                                Model.stand_User suModel = suBll.GetModel(Session.UserId);
+                                suModel.Points -= 2;
+                                suBll.Update(suModel);
+                            }
 
-
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -164,9 +199,9 @@ namespace stand
         {
             if (tree.SelectedNode != null)
             {
-                if (tree.SelectedNode.FirstNode==null)
+                if (tree.SelectedNode.FirstNode == null)
                 {
-                    DataTable dt = SqlHelper.Query(@"select *,b.Code as ClassifyThree,b.PID,null as ClassifyOne ,null as ClassifyTwo from stand_File a left join stand_Tree b on a.treeId=b.ID where a.IsDel=0 and a.IsVerify=1 and treeId=@treeId",new SqlParameter("@treeId",((DataRow)tree.SelectedNode.Tag)["Id"])).Tables[0];
+                    DataTable dt = SqlHelper.Query(@"select a.*,b.Code as ClassifyThree,b.PID,null as ClassifyOne ,null as ClassifyTwo from stand_File a left join stand_Tree b on a.treeId=b.ID where a.IsDel=0 and a.IsVerify=1 and treeId=@treeId", new SqlParameter("@treeId", ((DataRow)tree.SelectedNode.Tag)["Id"])).Tables[0];
                     grid_StandardMgr.DataSource = dt;
                 }
             }

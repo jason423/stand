@@ -73,5 +73,21 @@ namespace stand
             this.splitContainer1.Panel1.Controls.Clear();
             this.splitContainer1.Panel1.Controls.Add(fv);
         }
+
+        private void 用户管理ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UserMgr um = new UserMgr();
+            um.Dock = DockStyle.Fill;
+            this.splitContainer1.Panel1.Controls.Clear();
+            this.splitContainer1.Panel1.Controls.Add(um);
+        }
+
+        private void 首页ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FileUpload fu = new FileUpload {Dock = DockStyle.Fill};
+            this.splitContainer1.Panel1.Controls.Clear();
+            this.splitContainer1.Panel1.Controls.Add(fu);
+
+        }
     }
 }

@@ -47,6 +47,8 @@
             Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn16 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("UploadTime");
             Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn17 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("UploadUser");
             Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn11 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("PID");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn18 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("IsDel");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn19 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("IsVerify");
             Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance3 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance4 = new Infragistics.Win.Appearance();
@@ -62,9 +64,9 @@
             Infragistics.Win.ValueListItem valueListItem3 = new Infragistics.Win.ValueListItem();
             Infragistics.Win.ValueListItem valueListItem4 = new Infragistics.Win.ValueListItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.grid_StandardMgr = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.btn_Cancel = new System.Windows.Forms.Button();
             this.btn_OK = new System.Windows.Forms.Button();
-            this.grid_StandardMgr = new Infragistics.Win.UltraWinGrid.UltraGrid();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -90,28 +92,6 @@
             this.splitContainer1.Size = new System.Drawing.Size(838, 545);
             this.splitContainer1.SplitterDistance = 510;
             this.splitContainer1.TabIndex = 0;
-            // 
-            // btn_Cancel
-            // 
-            this.btn_Cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_Cancel.Location = new System.Drawing.Point(751, 3);
-            this.btn_Cancel.Name = "btn_Cancel";
-            this.btn_Cancel.Size = new System.Drawing.Size(75, 23);
-            this.btn_Cancel.TabIndex = 5;
-            this.btn_Cancel.Text = "驳回";
-            this.btn_Cancel.UseVisualStyleBackColor = true;
-            this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
-            // 
-            // btn_OK
-            // 
-            this.btn_OK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_OK.Location = new System.Drawing.Point(651, 3);
-            this.btn_OK.Name = "btn_OK";
-            this.btn_OK.Size = new System.Drawing.Size(75, 23);
-            this.btn_OK.TabIndex = 4;
-            this.btn_OK.Text = "通过";
-            this.btn_OK.UseVisualStyleBackColor = true;
-            this.btn_OK.Click += new System.EventHandler(this.btn_OK_Click);
             // 
             // grid_StandardMgr
             // 
@@ -155,6 +135,10 @@
             ultraGridColumn17.Header.VisiblePosition = 7;
             ultraGridColumn11.Header.VisiblePosition = 16;
             ultraGridColumn11.Hidden = true;
+            ultraGridColumn18.Header.VisiblePosition = 17;
+            ultraGridColumn18.Hidden = true;
+            ultraGridColumn19.Header.VisiblePosition = 18;
+            ultraGridColumn19.Hidden = true;
             ultraGridBand1.Columns.AddRange(new object[] {
             ultraGridColumn1,
             ultraGridColumn2,
@@ -172,7 +156,9 @@
             ultraGridColumn15,
             ultraGridColumn16,
             ultraGridColumn17,
-            ultraGridColumn11});
+            ultraGridColumn11,
+            ultraGridColumn18,
+            ultraGridColumn19});
             this.grid_StandardMgr.DisplayLayout.BandsSerializer.Add(ultraGridBand1);
             this.grid_StandardMgr.DisplayLayout.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
             this.grid_StandardMgr.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
@@ -198,7 +184,9 @@
             appearance6.BackColor = System.Drawing.SystemColors.Highlight;
             appearance6.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.grid_StandardMgr.DisplayLayout.Override.ActiveRowAppearance = appearance6;
-            this.grid_StandardMgr.DisplayLayout.Override.AllowAddNew = Infragistics.Win.UltraWinGrid.AllowAddNew.TemplateOnBottom;
+            this.grid_StandardMgr.DisplayLayout.Override.AllowAddNew = Infragistics.Win.UltraWinGrid.AllowAddNew.No;
+            this.grid_StandardMgr.DisplayLayout.Override.AllowDelete = Infragistics.Win.DefaultableBoolean.False;
+            this.grid_StandardMgr.DisplayLayout.Override.AllowUpdate = Infragistics.Win.DefaultableBoolean.False;
             this.grid_StandardMgr.DisplayLayout.Override.BorderStyleCell = Infragistics.Win.UIElementBorderStyle.Dotted;
             this.grid_StandardMgr.DisplayLayout.Override.BorderStyleRow = Infragistics.Win.UIElementBorderStyle.Dotted;
             appearance7.BackColor = System.Drawing.SystemColors.Window;
@@ -248,6 +236,28 @@
             this.grid_StandardMgr.Size = new System.Drawing.Size(838, 510);
             this.grid_StandardMgr.TabIndex = 3;
             this.grid_StandardMgr.Text = "ultraGrid1";
+            // 
+            // btn_Cancel
+            // 
+            this.btn_Cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_Cancel.Location = new System.Drawing.Point(751, 3);
+            this.btn_Cancel.Name = "btn_Cancel";
+            this.btn_Cancel.Size = new System.Drawing.Size(75, 23);
+            this.btn_Cancel.TabIndex = 5;
+            this.btn_Cancel.Text = "驳回";
+            this.btn_Cancel.UseVisualStyleBackColor = true;
+            this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
+            // 
+            // btn_OK
+            // 
+            this.btn_OK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_OK.Location = new System.Drawing.Point(651, 3);
+            this.btn_OK.Name = "btn_OK";
+            this.btn_OK.Size = new System.Drawing.Size(75, 23);
+            this.btn_OK.TabIndex = 4;
+            this.btn_OK.Text = "通过";
+            this.btn_OK.UseVisualStyleBackColor = true;
+            this.btn_OK.Click += new System.EventHandler(this.btn_OK_Click);
             // 
             // FileVerify
             // 

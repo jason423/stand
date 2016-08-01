@@ -55,7 +55,7 @@ namespace stand
                 MessageBox.Show(@"请输入验证码!");
                 return;
             }
-            Regex regexEmail = new Regex(@"[\\w-\\.]+@([\\w-]+\\.)+[a-z]{2,3}");
+            Regex regexEmail = new Regex("[\\w-\\.]+@([\\w-]+\\.)+[a-z]{2,3}");
             if (!regexEmail.IsMatch(text_EMail.Text.Trim()))
             {
                 MessageBox.Show(@"请输入正确的邮箱!", @"邮箱错误", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -66,7 +66,7 @@ namespace stand
                 MessageBox.Show(@"验证码错误!");
                 return;
             }
-            Regex regex = new Regex(@"^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$");
+            Regex regex = new Regex(@"^1[3|4|5|7|8]\d{9}$");
             if (!regex.IsMatch(text_PhoneNumber.Text.Trim()))
             {
                 MessageBox.Show(@"请输入正确的手机号!", @"手机号错误", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -132,6 +132,101 @@ namespace stand
             {
                 this.btn_Save_Click(sender, e);//触发按钮事件
             }
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblStar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void text_EMail_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void text_Password_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void text_PhoneNumber_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Cancel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void text_UserAccount_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+
+        }
+
+        private void txt_Pwd_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbl_notice_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_Pin_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

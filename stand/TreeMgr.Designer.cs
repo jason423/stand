@@ -78,7 +78,6 @@
             // 
             // tree_GeneralPart
             // 
-            this.tree_GeneralPart.CheckBoxes = true;
             this.tree_GeneralPart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tree_GeneralPart.Location = new System.Drawing.Point(0, 0);
             this.tree_GeneralPart.Name = "tree_GeneralPart";
@@ -177,14 +176,14 @@
             // 添加节点ToolStripMenuItem
             // 
             this.添加节点ToolStripMenuItem.Name = "添加节点ToolStripMenuItem";
-            this.添加节点ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.添加节点ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.添加节点ToolStripMenuItem.Text = "添加节点";
             this.添加节点ToolStripMenuItem.Click += new System.EventHandler(this.添加节点ToolStripMenuItem_Click);
             // 
             // 编辑节点ToolStripMenuItem
             // 
             this.编辑节点ToolStripMenuItem.Name = "编辑节点ToolStripMenuItem";
-            this.编辑节点ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.编辑节点ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.编辑节点ToolStripMenuItem.Text = "编辑节点";
             this.编辑节点ToolStripMenuItem.Click += new System.EventHandler(this.编辑节点ToolStripMenuItem_Click);
             // 

@@ -57,8 +57,18 @@ namespace stand
         }
         private void InitData()
         {
-            DataTable dt = SqlHelper.Query(@"select *,b.Code as ClassifyThree,b.PID,null as ClassifyOne ,null as ClassifyTwo from stand_File a left join stand_Tree b on a.treeId=b.ID where UploadUser=@UploadUser",new SqlParameter("@UploadUser",PublicClass.EnDeCode.Encode(Session.Account))).Tables[0];
-            grid_StandardMgr.DataSource = dt;
+            try
+            {
+                DataTable dt =
+                    SqlHelper.Query(
+                        @"select a.*,b.Code as ClassifyThree,b.PID,null as ClassifyOne ,null as ClassifyTwo,(case Isverify when 0 then '未审批' when 1 then '审批通过' when 2 then '审批未通过' end) as verify from stand_File a left join stand_Tree b on a.treeId=b.ID where UploadUser=@UploadUser",
+                        new SqlParameter("@UploadUser", Session.UserId)).Tables[0];
+                grid_StandardMgr.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

@@ -49,6 +49,7 @@
             Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn11 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("PID");
             Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn18 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("IsDel");
             Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn19 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("IsVerify");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn20 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Verify");
             Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance3 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance4 = new Infragistics.Win.Appearance();
@@ -61,8 +62,8 @@
             Infragistics.Win.Appearance appearance11 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance12 = new Infragistics.Win.Appearance();
             Infragistics.Win.ValueList valueList1 = new Infragistics.Win.ValueList(18670309);
-            Infragistics.Win.ValueListItem valueListItem1 = new Infragistics.Win.ValueListItem();
-            Infragistics.Win.ValueListItem valueListItem2 = new Infragistics.Win.ValueListItem();
+            Infragistics.Win.ValueListItem valueListItem3 = new Infragistics.Win.ValueListItem();
+            Infragistics.Win.ValueListItem valueListItem4 = new Infragistics.Win.ValueListItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.grid_StandardMgr = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.btn_Down = new System.Windows.Forms.Button();
@@ -93,6 +94,7 @@
             // 
             // grid_StandardMgr
             // 
+            this.grid_StandardMgr.DataMember = null;
             appearance1.BackColor = System.Drawing.SystemColors.Window;
             appearance1.BorderColor = System.Drawing.SystemColors.InactiveCaption;
             this.grid_StandardMgr.DisplayLayout.Appearance = appearance1;
@@ -131,12 +133,16 @@
             ultraGridColumn16.Header.VisiblePosition = 8;
             ultraGridColumn17.Header.Caption = "上传人";
             ultraGridColumn17.Header.VisiblePosition = 7;
+            ultraGridColumn17.Hidden = true;
             ultraGridColumn11.Header.VisiblePosition = 17;
             ultraGridColumn11.Hidden = true;
             ultraGridColumn18.Header.VisiblePosition = 18;
             ultraGridColumn18.Hidden = true;
             ultraGridColumn19.Header.Caption = "是否审批";
             ultraGridColumn19.Header.VisiblePosition = 13;
+            ultraGridColumn19.Hidden = true;
+            ultraGridColumn20.Header.Caption = "是否审批";
+            ultraGridColumn20.Header.VisiblePosition = 19;
             ultraGridBand1.Columns.AddRange(new object[] {
             ultraGridColumn1,
             ultraGridColumn2,
@@ -156,7 +162,8 @@
             ultraGridColumn17,
             ultraGridColumn11,
             ultraGridColumn18,
-            ultraGridColumn19});
+            ultraGridColumn19,
+            ultraGridColumn20});
             this.grid_StandardMgr.DisplayLayout.BandsSerializer.Add(ultraGridBand1);
             this.grid_StandardMgr.DisplayLayout.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
             this.grid_StandardMgr.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
@@ -182,7 +189,9 @@
             appearance6.BackColor = System.Drawing.SystemColors.Highlight;
             appearance6.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.grid_StandardMgr.DisplayLayout.Override.ActiveRowAppearance = appearance6;
-            this.grid_StandardMgr.DisplayLayout.Override.AllowAddNew = Infragistics.Win.UltraWinGrid.AllowAddNew.TemplateOnBottom;
+            this.grid_StandardMgr.DisplayLayout.Override.AllowAddNew = Infragistics.Win.UltraWinGrid.AllowAddNew.No;
+            this.grid_StandardMgr.DisplayLayout.Override.AllowDelete = Infragistics.Win.DefaultableBoolean.False;
+            this.grid_StandardMgr.DisplayLayout.Override.AllowUpdate = Infragistics.Win.DefaultableBoolean.False;
             this.grid_StandardMgr.DisplayLayout.Override.BorderStyleCell = Infragistics.Win.UIElementBorderStyle.Dotted;
             this.grid_StandardMgr.DisplayLayout.Override.BorderStyleRow = Infragistics.Win.UIElementBorderStyle.Dotted;
             appearance7.BackColor = System.Drawing.SystemColors.Window;
@@ -215,13 +224,13 @@
             this.grid_StandardMgr.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
             this.grid_StandardMgr.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
             valueList1.Key = "LanguageType";
-            valueListItem1.DataValue = "EN";
-            valueListItem1.DisplayText = "EN";
-            valueListItem2.DataValue = "CH";
-            valueListItem2.DisplayText = "CH";
+            valueListItem3.DataValue = "EN";
+            valueListItem3.DisplayText = "EN";
+            valueListItem4.DataValue = "CH";
+            valueListItem4.DisplayText = "CH";
             valueList1.ValueListItems.AddRange(new Infragistics.Win.ValueListItem[] {
-            valueListItem1,
-            valueListItem2});
+            valueListItem3,
+            valueListItem4});
             this.grid_StandardMgr.DisplayLayout.ValueLists.AddRange(new Infragistics.Win.ValueList[] {
             valueList1});
             this.grid_StandardMgr.DisplayLayout.ViewStyleBand = Infragistics.Win.UltraWinGrid.ViewStyleBand.OutlookGroupBy;

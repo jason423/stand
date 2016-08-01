@@ -31,7 +31,6 @@
             Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinGrid.UltraGridBand ultraGridBand1 = new Infragistics.Win.UltraWinGrid.UltraGridBand("Band 0", -1);
             Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn1 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("ID");
-            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn2 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("StandardCode");
             Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn3 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("ClassifyOne");
             Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn4 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("ClassifyTwo");
             Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn5 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("ClassifyThree");
@@ -47,6 +46,10 @@
             Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn16 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("UploadTime");
             Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn17 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("UploadUser");
             Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn11 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("PID");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn18 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("IsDel");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn19 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("IsVerify");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn20 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Account");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn2 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("StandardCode");
             Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance3 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance4 = new Infragistics.Win.Appearance();
@@ -99,13 +102,12 @@
             // 
             // grid_StandardMgr
             // 
+            this.grid_StandardMgr.DataMember = null;
             appearance1.BackColor = System.Drawing.SystemColors.Window;
             appearance1.BorderColor = System.Drawing.SystemColors.InactiveCaption;
             this.grid_StandardMgr.DisplayLayout.Appearance = appearance1;
             ultraGridColumn1.Header.VisiblePosition = 0;
             ultraGridColumn1.Hidden = true;
-            ultraGridColumn2.Header.Caption = "标准编码";
-            ultraGridColumn2.Header.VisiblePosition = 1;
             ultraGridColumn3.Header.Caption = "一级分类";
             ultraGridColumn3.Header.VisiblePosition = 2;
             ultraGridColumn3.Width = 84;
@@ -118,30 +120,38 @@
             ultraGridColumn6.Header.Caption = "标准号";
             ultraGridColumn6.Header.VisiblePosition = 5;
             ultraGridColumn7.Header.Caption = "年代号";
-            ultraGridColumn7.Header.VisiblePosition = 6;
+            ultraGridColumn7.Header.VisiblePosition = 7;
             ultraGridColumn8.Header.Caption = "中文名称";
-            ultraGridColumn8.Header.VisiblePosition = 10;
+            ultraGridColumn8.Header.VisiblePosition = 11;
             ultraGridColumn9.Header.Caption = "英文名称";
-            ultraGridColumn9.Header.VisiblePosition = 11;
+            ultraGridColumn9.Header.VisiblePosition = 12;
             ultraGridColumn10.Header.Caption = "备注";
-            ultraGridColumn10.Header.VisiblePosition = 13;
+            ultraGridColumn10.Header.VisiblePosition = 14;
             ultraGridColumn12.Header.Caption = "文件名称";
-            ultraGridColumn12.Header.VisiblePosition = 12;
-            ultraGridColumn13.Header.VisiblePosition = 14;
+            ultraGridColumn12.Header.VisiblePosition = 13;
+            ultraGridColumn13.Header.VisiblePosition = 15;
             ultraGridColumn13.Hidden = true;
-            ultraGridColumn14.Header.VisiblePosition = 15;
+            ultraGridColumn14.Header.VisiblePosition = 16;
             ultraGridColumn14.Hidden = true;
             ultraGridColumn15.Header.Caption = "所需分数";
-            ultraGridColumn15.Header.VisiblePosition = 9;
+            ultraGridColumn15.Header.VisiblePosition = 10;
             ultraGridColumn16.Header.Caption = "上传时间";
-            ultraGridColumn16.Header.VisiblePosition = 8;
+            ultraGridColumn16.Header.VisiblePosition = 9;
             ultraGridColumn17.Header.Caption = "上传人";
-            ultraGridColumn17.Header.VisiblePosition = 7;
-            ultraGridColumn11.Header.VisiblePosition = 16;
+            ultraGridColumn17.Header.VisiblePosition = 8;
+            ultraGridColumn17.Hidden = true;
+            ultraGridColumn11.Header.VisiblePosition = 17;
             ultraGridColumn11.Hidden = true;
+            ultraGridColumn18.Header.VisiblePosition = 18;
+            ultraGridColumn18.Hidden = true;
+            ultraGridColumn19.Header.VisiblePosition = 19;
+            ultraGridColumn19.Hidden = true;
+            ultraGridColumn20.Header.Caption = "上传人";
+            ultraGridColumn20.Header.VisiblePosition = 6;
+            ultraGridColumn2.Header.Caption = "标准编码";
+            ultraGridColumn2.Header.VisiblePosition = 1;
             ultraGridBand1.Columns.AddRange(new object[] {
             ultraGridColumn1,
-            ultraGridColumn2,
             ultraGridColumn3,
             ultraGridColumn4,
             ultraGridColumn5,
@@ -156,7 +166,11 @@
             ultraGridColumn15,
             ultraGridColumn16,
             ultraGridColumn17,
-            ultraGridColumn11});
+            ultraGridColumn11,
+            ultraGridColumn18,
+            ultraGridColumn19,
+            ultraGridColumn20,
+            ultraGridColumn2});
             this.grid_StandardMgr.DisplayLayout.BandsSerializer.Add(ultraGridBand1);
             this.grid_StandardMgr.DisplayLayout.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
             this.grid_StandardMgr.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;

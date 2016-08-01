@@ -20,7 +20,7 @@ namespace stand
 
         private void InitData()
         {
-            DataTable dt = SqlHelper.Query(@"select *,b.Code as ClassifyThree,b.PID,null as ClassifyOne ,null as ClassifyTwo from stand_File a left join stand_Tree b on a.treeId=b.ID where a.IsDel=0 and a.IsVerify=0").Tables[0];
+            DataTable dt = SqlHelper.Query(@"select a.*,b.Code as ClassifyThree,b.PID,null as ClassifyOne ,null as ClassifyTwo from stand_File a left join stand_Tree b on a.treeId=b.ID where a.IsDel=0 and a.IsVerify=0").Tables[0];
             grid_StandardMgr.DataSource = dt;
         }
 
@@ -28,7 +28,7 @@ namespace stand
         {
             if (grid_StandardMgr.ActiveRow != null)
             {
-                SqlHelper.Query(@"update stand_File set IsVerify=2 where Id=" + grid_StandardMgr.ActiveRow.Cells["Id"]);
+                SqlHelper.Query(@"update stand_File set IsVerify=2 where Id=" + grid_StandardMgr.ActiveRow.Cells["Id"].Value);
                 MessageBox.Show(@"驳回成功", @"提示");
                 InitData();
             }
@@ -43,7 +43,7 @@ namespace stand
         {
             if (grid_StandardMgr.ActiveRow != null)
             {
-                SqlHelper.Query(@"update stand_File set IsVerify=1 where Id=" + grid_StandardMgr.ActiveRow.Cells["Id"]);
+                SqlHelper.Query(@"update stand_File set IsVerify=1 where Id=" + grid_StandardMgr.ActiveRow.Cells["Id"].Value);
                 MessageBox.Show(@"通过成功", @"提示");
                 InitData();
             }

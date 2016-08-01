@@ -35,12 +35,14 @@
             this.修改个人信息ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.修改密码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.系统菜单ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.用户管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.文件审批ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.树维护ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toollbl_Account = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.首页ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -64,6 +66,7 @@
             // 开始ToolStripMenuItem
             // 
             this.开始ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.首页ToolStripMenuItem,
             this.我的上传ToolStripMenuItem,
             this.修改绑定邮箱ToolStripMenuItem,
             this.修改个人信息ToolStripMenuItem,
@@ -103,6 +106,7 @@
             // 系统菜单ToolStripMenuItem
             // 
             this.系统菜单ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.用户管理ToolStripMenuItem,
             this.文件审批ToolStripMenuItem,
             this.树维护ToolStripMenuItem});
             this.系统菜单ToolStripMenuItem.Name = "系统菜单ToolStripMenuItem";
@@ -110,10 +114,17 @@
             this.系统菜单ToolStripMenuItem.Text = "系统菜单";
             this.系统菜单ToolStripMenuItem.Visible = false;
             // 
+            // 用户管理ToolStripMenuItem
+            // 
+            this.用户管理ToolStripMenuItem.Name = "用户管理ToolStripMenuItem";
+            this.用户管理ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.用户管理ToolStripMenuItem.Text = "用户管理";
+            this.用户管理ToolStripMenuItem.Click += new System.EventHandler(this.用户管理ToolStripMenuItem_Click);
+            // 
             // 文件审批ToolStripMenuItem
             // 
             this.文件审批ToolStripMenuItem.Name = "文件审批ToolStripMenuItem";
-            this.文件审批ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.文件审批ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.文件审批ToolStripMenuItem.Text = "文件审批";
             this.文件审批ToolStripMenuItem.Click += new System.EventHandler(this.文件审批ToolStripMenuItem_Click);
             // 
@@ -163,6 +174,13 @@
             this.splitContainer1.SplitterDistance = 675;
             this.splitContainer1.TabIndex = 6;
             // 
+            // 首页ToolStripMenuItem
+            // 
+            this.首页ToolStripMenuItem.Name = "首页ToolStripMenuItem";
+            this.首页ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.首页ToolStripMenuItem.Text = "首页";
+            this.首页ToolStripMenuItem.Click += new System.EventHandler(this.首页ToolStripMenuItem_Click);
+            // 
             // Desktop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -201,5 +219,7 @@
         private System.Windows.Forms.ToolStripMenuItem 文件审批ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 树维护ToolStripMenuItem;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.ToolStripMenuItem 用户管理ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 首页ToolStripMenuItem;
     }
 }
