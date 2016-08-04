@@ -83,8 +83,12 @@ namespace stand
             for(int i=0;i<dt.Rows.Count;i++)
             { 
                 dt.Rows[i]["StandardCode"] = dt.Rows[i]["StandardCode"].ToString().PadLeft(10, '0');
+                dt.Rows[i]["Account"] = PublicClass.EnDeCode.Decode(dt.Rows[i]["Account"].ToString());
             }
+            
+            PublicClass.TreeMethod.GetCodeByTreeId(dt);
             dt.AcceptChanges();
+            
             grid_StandardMgr.DataSource = dt;
 
         }
@@ -113,7 +117,7 @@ namespace stand
                     string standardCode = (int.Parse(dt.Rows[0][0].ToString()) + 1).ToString();
                     string sql =
                     @"insert into stand_File(treeId,StandardNo,YearNo,CN_Name,EN_Name,StandardCode,Remark,FileName,FTPFileName,Point,UploadTime,UploadUser,IsDel,IsVerify) 
-                            values(@treeId,@StandardNo,@YearNo,@CN_Name,@EN_Name,@StandardCode,@Remark,@FileName,@FTPFileName,2,'" + DateTime.Now + "'," + Session.UserId + ",0,0)";
+                            values(@treeId,@StandardNo,@YearNo,@CN_Name,@EN_Name,@StandardCode,@Remark,@FileName,@FTPFileName,2,'" + DateTime.Now.ToString() + "'," + Session.UserId + ",0,0)";
                     SqlHelper.Query(sql, new SqlParameter("@treeId", ((DataRow)tree.SelectedNode.Tag)["ID"].ToString()), new SqlParameter("@StandardNo", fi.StandardNo), new SqlParameter("@YearNo", fi.Year),
                         new SqlParameter("@CN_Name", fi.CNName), new SqlParameter("@EN_Name", fi.EN_Name),
                         new SqlParameter("@StandardCode", standardCode), new SqlParameter("@Remark", fi.Remark),
@@ -138,7 +142,7 @@ namespace stand
             {
                 try
                 {
-                    DataTable dt = SqlHelper.Query("select * from stand_UserDowload where FIleID=@FIleID and UserID=@UserID", new SqlParameter("@FIleID", grid_StandardMgr.ActiveRow.Cells["Id"])
+                    DataTable dt = SqlHelper.Query("select * from stand_UserDowload where FIleID=@FIleID and UserID=@UserID", new SqlParameter("@FIleID", grid_StandardMgr.ActiveRow.Cells["Id"].Value)
                         , new SqlParameter("@UserID", Session.UserId)).Tables[0];
                     if (dt.Rows.Count > 0)
                     {
@@ -158,7 +162,7 @@ namespace stand
                     }
                     else
                     {
-                        if (Session.Points < int.Parse(grid_StandardMgr.ActiveRow.Cells["Points"].ToString()))
+                        if (Session.Points < int.Parse(grid_StandardMgr.ActiveRow.Cells["Point"].Value.ToString()))
                         {
                             MessageBox.Show(@"分数不够,请上传文件获取分数", @"提示");
                         }
@@ -207,6 +211,7 @@ namespace stand
                     {
                         dt.Rows[i]["StandardCode"] = dt.Rows[i]["StandardCode"].ToString().PadLeft(10, '0');
                     }
+                    PublicClass.TreeMethod.GetCodeByTreeId(dt);
                     dt.AcceptChanges();
                     grid_StandardMgr.DataSource = dt;
                 }

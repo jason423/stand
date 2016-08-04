@@ -1,6 +1,6 @@
 ﻿namespace stand
 {
-    partial class FileUpload
+    partial class FileMgr
     {
         /// <summary> 
         /// 必需的设计器变量。
@@ -64,22 +64,32 @@
             Infragistics.Win.ValueList valueList1 = new Infragistics.Win.ValueList(18670309);
             Infragistics.Win.ValueListItem valueListItem1 = new Infragistics.Win.ValueListItem();
             Infragistics.Win.ValueListItem valueListItem2 = new Infragistics.Win.ValueListItem();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.grid_StandardMgr = new Infragistics.Win.UltraWinGrid.UltraGrid();
-            this.btn_download = new System.Windows.Forms.Button();
-            this.btn_upload = new System.Windows.Forms.Button();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.tree = new System.Windows.Forms.TreeView();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.btn_Edit = new System.Windows.Forms.Button();
+            this.btn_Delete = new System.Windows.Forms.Button();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.grid_StandardMgr = new Infragistics.Win.UltraWinGrid.UltraGrid();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grid_StandardMgr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grid_StandardMgr)).BeginInit();
             this.SuspendLayout();
+            // 
+            // tree
+            // 
+            this.tree.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tree.HideSelection = false;
+            this.tree.Location = new System.Drawing.Point(0, 0);
+            this.tree.Name = "tree";
+            this.tree.Size = new System.Drawing.Size(269, 666);
+            this.tree.TabIndex = 0;
+            this.tree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tree_AfterSelect);
             // 
             // splitContainer1
             // 
@@ -94,11 +104,50 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.btn_download);
-            this.splitContainer1.Panel2.Controls.Add(this.btn_upload);
-            this.splitContainer1.Size = new System.Drawing.Size(822, 658);
-            this.splitContainer1.SplitterDistance = 599;
+            this.splitContainer1.Panel2.Controls.Add(this.btn_Edit);
+            this.splitContainer1.Panel2.Controls.Add(this.btn_Delete);
+            this.splitContainer1.Size = new System.Drawing.Size(644, 666);
+            this.splitContainer1.SplitterDistance = 606;
             this.splitContainer1.TabIndex = 1;
+            // 
+            // btn_Edit
+            // 
+            this.btn_Edit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_Edit.Location = new System.Drawing.Point(458, 20);
+            this.btn_Edit.Name = "btn_Edit";
+            this.btn_Edit.Size = new System.Drawing.Size(75, 23);
+            this.btn_Edit.TabIndex = 4;
+            this.btn_Edit.Text = "编辑标准";
+            this.btn_Edit.UseVisualStyleBackColor = true;
+            this.btn_Edit.Click += new System.EventHandler(this.btn_Edit_Click);
+            // 
+            // btn_Delete
+            // 
+            this.btn_Delete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_Delete.Location = new System.Drawing.Point(551, 20);
+            this.btn_Delete.Name = "btn_Delete";
+            this.btn_Delete.Size = new System.Drawing.Size(75, 23);
+            this.btn_Delete.TabIndex = 0;
+            this.btn_Delete.Text = "删除标准";
+            this.btn_Delete.UseVisualStyleBackColor = true;
+            this.btn_Delete.Click += new System.EventHandler(this.btn_Delete_Click);
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.tree);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.splitContainer1);
+            this.splitContainer2.Size = new System.Drawing.Size(917, 666);
+            this.splitContainer2.SplitterDistance = 269;
+            this.splitContainer2.TabIndex = 3;
             // 
             // grid_StandardMgr
             // 
@@ -244,85 +293,37 @@
             this.grid_StandardMgr.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.grid_StandardMgr.Location = new System.Drawing.Point(0, 0);
             this.grid_StandardMgr.Name = "grid_StandardMgr";
-            this.grid_StandardMgr.Size = new System.Drawing.Size(822, 599);
-            this.grid_StandardMgr.TabIndex = 2;
+            this.grid_StandardMgr.Size = new System.Drawing.Size(644, 606);
+            this.grid_StandardMgr.TabIndex = 3;
             this.grid_StandardMgr.Text = "ultraGrid1";
             // 
-            // btn_download
-            // 
-            this.btn_download.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_download.Location = new System.Drawing.Point(636, 19);
-            this.btn_download.Name = "btn_download";
-            this.btn_download.Size = new System.Drawing.Size(75, 23);
-            this.btn_download.TabIndex = 4;
-            this.btn_download.Text = "下载标准";
-            this.btn_download.UseVisualStyleBackColor = true;
-            this.btn_download.Click += new System.EventHandler(this.btn_download_Click);
-            // 
-            // btn_upload
-            // 
-            this.btn_upload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_upload.Location = new System.Drawing.Point(729, 19);
-            this.btn_upload.Name = "btn_upload";
-            this.btn_upload.Size = new System.Drawing.Size(75, 23);
-            this.btn_upload.TabIndex = 0;
-            this.btn_upload.Text = "上传标准";
-            this.btn_upload.UseVisualStyleBackColor = true;
-            this.btn_upload.Click += new System.EventHandler(this.btn_upload_Click);
-            // 
-            // splitContainer2
-            // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Name = "splitContainer2";
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.Controls.Add(this.tree);
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.Controls.Add(this.splitContainer1);
-            this.splitContainer2.Size = new System.Drawing.Size(1170, 658);
-            this.splitContainer2.SplitterDistance = 344;
-            this.splitContainer2.TabIndex = 2;
-            // 
-            // tree
-            // 
-            this.tree.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tree.HideSelection = false;
-            this.tree.Location = new System.Drawing.Point(0, 0);
-            this.tree.Name = "tree";
-            this.tree.Size = new System.Drawing.Size(344, 658);
-            this.tree.TabIndex = 0;
-            this.tree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tree_AfterSelect);
-            // 
-            // FileUpload
+            // FileMgr
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainer2);
-            this.Name = "FileUpload";
-            this.Size = new System.Drawing.Size(1170, 658);
+            this.Name = "FileMgr";
+            this.Size = new System.Drawing.Size(917, 666);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grid_StandardMgr)).EndInit();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grid_StandardMgr)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.Button btn_download;
-        private System.Windows.Forms.Button btn_upload;
-        private Infragistics.Win.UltraWinGrid.UltraGrid grid_StandardMgr;
-        private System.Windows.Forms.SplitContainer splitContainer2;
+
         private System.Windows.Forms.TreeView tree;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Button btn_Edit;
+        private System.Windows.Forms.Button btn_Delete;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private Infragistics.Win.UltraWinGrid.UltraGrid grid_StandardMgr;
     }
 }

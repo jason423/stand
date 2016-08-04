@@ -86,11 +86,23 @@
     <Compile Include="EditUser.Designer.cs">
       <DependentUpon>EditUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="FileEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FileEdit.Designer.cs">
+      <DependentUpon>FileEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="FileInfo.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FileInfo.Designer.cs">
       <DependentUpon>FileInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FileMgr.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FileMgr.Designer.cs">
+      <DependentUpon>FileMgr.cs</DependentUpon>
     </Compile>
     <Compile Include="FileUpload.cs">
       <SubType>UserControl</SubType>
@@ -161,8 +173,14 @@
     <EmbeddedResource Include="EditUser.resx">
       <DependentUpon>EditUser.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FileEdit.resx">
+      <DependentUpon>FileEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FileInfo.resx">
       <DependentUpon>FileInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FileMgr.resx">
+      <DependentUpon>FileMgr.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FileUpload.resx">
       <DependentUpon>FileUpload.cs</DependentUpon>

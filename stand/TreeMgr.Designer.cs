@@ -79,6 +79,7 @@
             // tree_GeneralPart
             // 
             this.tree_GeneralPart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tree_GeneralPart.HideSelection = false;
             this.tree_GeneralPart.Location = new System.Drawing.Point(0, 0);
             this.tree_GeneralPart.Name = "tree_GeneralPart";
             this.tree_GeneralPart.Size = new System.Drawing.Size(211, 410);

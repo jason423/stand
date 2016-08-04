@@ -89,5 +89,12 @@ namespace stand
             this.splitContainer1.Panel1.Controls.Add(fu);
 
         }
+
+        private void 文件管理ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FileMgr fm = new FileMgr { Dock = DockStyle.Fill };
+            this.splitContainer1.Panel1.Controls.Clear();
+            this.splitContainer1.Panel1.Controls.Add(fm);
+        }
     }
 }

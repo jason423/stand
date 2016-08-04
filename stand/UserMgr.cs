@@ -45,10 +45,10 @@ namespace stand
             else
             {
                 stand_User bllSu = new stand_User();
-                Model.stand_User modelUser = bllSu.GetModel(int.Parse(gridUser.ActiveRow.Cells["Id"].ToString()));
+                Model.stand_User modelUser = bllSu.GetModel(int.Parse(gridUser.ActiveRow.Cells["Id"].Value.ToString()));
                 EditUser eu = new EditUser(modelUser);
                 eu.ShowDialog();
-
+                InitData();
             }
         }
 

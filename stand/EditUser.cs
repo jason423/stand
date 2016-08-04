@@ -16,6 +16,7 @@ namespace stand
         public EditUser()
         {
             InitializeComponent();
+            
         }
 
         private stand_User _modelUser = null;
@@ -23,6 +24,7 @@ namespace stand
         {
             InitializeComponent();
             if (modelStandUser == null) return;
+            Name = "编辑用户";
             txt_Point.Text = modelStandUser.Points.ToString();
             text_EMail.Text = modelStandUser.Email;
             text_Password.Text = PublicClass.EnDeCode.Decode(modelStandUser.Password);
@@ -109,6 +111,8 @@ namespace stand
                 _modelUser.Points = Int32.Parse(txt_Point.Text);
                 _modelUser.Role = (comb_Role.Text == @"管理员" ? "1" : "2");
                 bllUser.Update(_modelUser);
+                MessageBox.Show(@"编辑成功!", @"提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Dispose();
             }
             else
             {
@@ -120,6 +124,8 @@ namespace stand
                 _modelUser.Points = Int32.Parse(txt_Point.Text);
                 _modelUser.Role = (comb_Role.Text==@"管理员" ? "1" : "2");
                 bllUser.Add(_modelUser);
+                MessageBox.Show(@"新增成功!", @"提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Dispose();
             }
         }
 

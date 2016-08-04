@@ -21,6 +21,12 @@ namespace stand
         private void InitData()
         {
             DataTable dt = SqlHelper.Query(@"select a.*,b.Code as ClassifyThree,b.PID,null as ClassifyOne ,null as ClassifyTwo from stand_File a left join stand_Tree b on a.treeId=b.ID where a.IsDel=0 and a.IsVerify=0").Tables[0];
+            PublicClass.TreeMethod.GetCodeByTreeId(dt);
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                dt.Rows[i]["StandardCode"] = dt.Rows[i]["StandardCode"].ToString().PadLeft(10, '0');
+                dt.Rows[i]["Account"] = PublicClass.EnDeCode.Decode(dt.Rows[i]["Account"].ToString());
+            }
             grid_StandardMgr.DataSource = dt;
         }
 

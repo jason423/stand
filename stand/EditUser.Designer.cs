@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.comb_Role = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txt_Point = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -43,12 +49,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btn_Cancel = new System.Windows.Forms.Button();
             this.btn_Save = new System.Windows.Forms.Button();
-            this.comb_Role = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txt_Point = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -88,8 +88,67 @@
             this.splitContainer1.Panel2.Controls.Add(this.btn_Cancel);
             this.splitContainer1.Panel2.Controls.Add(this.btn_Save);
             this.splitContainer1.Size = new System.Drawing.Size(337, 257);
-            this.splitContainer1.SplitterDistance = 226;
+            this.splitContainer1.SplitterDistance = 225;
             this.splitContainer1.TabIndex = 2;
+            // 
+            // comb_Role
+            // 
+            this.comb_Role.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comb_Role.FormattingEnabled = true;
+            this.comb_Role.Items.AddRange(new object[] {
+            "用户",
+            "管理员"});
+            this.comb_Role.Location = new System.Drawing.Point(70, 168);
+            this.comb_Role.Name = "comb_Role";
+            this.comb_Role.Size = new System.Drawing.Size(243, 20);
+            this.comb_Role.TabIndex = 6;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.Color.Red;
+            this.label9.Location = new System.Drawing.Point(319, 204);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(11, 12);
+            this.label9.TabIndex = 31;
+            this.label9.Text = "*";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.Color.Red;
+            this.label4.Location = new System.Drawing.Point(319, 171);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(11, 12);
+            this.label4.TabIndex = 30;
+            this.label4.Text = "*";
+            // 
+            // txt_Point
+            // 
+            this.txt_Point.Location = new System.Drawing.Point(70, 201);
+            this.txt_Point.MaxLength = 999;
+            this.txt_Point.Name = "txt_Point";
+            this.txt_Point.Size = new System.Drawing.Size(243, 21);
+            this.txt_Point.TabIndex = 7;
+            this.txt_Point.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_Point_KeyPress);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(32, 204);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(41, 12);
+            this.label2.TabIndex = 29;
+            this.label2.Text = "积分：";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(32, 171);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(41, 12);
+            this.label1.TabIndex = 27;
+            this.label1.Text = "角色：";
             // 
             // label12
             // 
@@ -204,7 +263,7 @@
             // 
             this.btn_Cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btn_Cancel.Location = new System.Drawing.Point(222, 3);
+            this.btn_Cancel.Location = new System.Drawing.Point(222, 4);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(75, 23);
             this.btn_Cancel.TabIndex = 9;
@@ -215,72 +274,13 @@
             // btn_Save
             // 
             this.btn_Save.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_Save.Location = new System.Drawing.Point(70, 3);
+            this.btn_Save.Location = new System.Drawing.Point(70, 4);
             this.btn_Save.Name = "btn_Save";
             this.btn_Save.Size = new System.Drawing.Size(75, 23);
             this.btn_Save.TabIndex = 8;
             this.btn_Save.Text = "确定";
             this.btn_Save.UseVisualStyleBackColor = true;
             this.btn_Save.Click += new System.EventHandler(this.btn_Save_Click);
-            // 
-            // comb_Role
-            // 
-            this.comb_Role.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comb_Role.FormattingEnabled = true;
-            this.comb_Role.Items.AddRange(new object[] {
-            "用户",
-            "管理员"});
-            this.comb_Role.Location = new System.Drawing.Point(70, 168);
-            this.comb_Role.Name = "comb_Role";
-            this.comb_Role.Size = new System.Drawing.Size(243, 20);
-            this.comb_Role.TabIndex = 6;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(32, 171);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 12);
-            this.label1.TabIndex = 27;
-            this.label1.Text = "角色：";
-            // 
-            // txt_Point
-            // 
-            this.txt_Point.Location = new System.Drawing.Point(70, 201);
-            this.txt_Point.MaxLength = 999;
-            this.txt_Point.Name = "txt_Point";
-            this.txt_Point.Size = new System.Drawing.Size(243, 21);
-            this.txt_Point.TabIndex = 7;
-            this.txt_Point.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_Point_KeyPress);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(32, 204);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 12);
-            this.label2.TabIndex = 29;
-            this.label2.Text = "积分：";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.ForeColor = System.Drawing.Color.Red;
-            this.label4.Location = new System.Drawing.Point(319, 171);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(11, 12);
-            this.label4.TabIndex = 30;
-            this.label4.Text = "*";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.ForeColor = System.Drawing.Color.Red;
-            this.label9.Location = new System.Drawing.Point(319, 204);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(11, 12);
-            this.label9.TabIndex = 31;
-            this.label9.Text = "*";
             // 
             // EditUser
             // 
@@ -290,7 +290,7 @@
             this.Controls.Add(this.splitContainer1);
             this.Name = "EditUser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "EditUser";
+            this.Text = "新增用户";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
