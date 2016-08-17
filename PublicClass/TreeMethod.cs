@@ -16,10 +16,17 @@ namespace PublicClass
         {           
             foreach (DataRow dr in (dt.Rows))
             {
-                DataRow drTwo =dtTree.Select("Id='" +dr["PID"]+ "'")[0];
-                dr["ClassifyTwo"] = drTwo["Code"].ToString();
-                DataRow drThree = dtTree.Select("Id='" + drTwo["PID"] + "'")[0];
-                dr["ClassifyOne"] = drThree["Code"].ToString();
+                if (!string.IsNullOrWhiteSpace(dr["PID"].ToString()))
+                {
+
+                    DataRow[] drs = dtTree.Select("Id='" + dr["PID"] + "'");
+                    if (drs.Length > 0)
+                    {
+                        dr["ClassifyTwo"] = drs[0]["Code"].ToString();
+                        DataRow drThree = dtTree.Select("Id='" + drs[0]["PID"] + "'")[0];
+                        dr["ClassifyOne"] = drThree["Code"].ToString();
+                    }
+                }
             }
             DataView dv = dt.DefaultView;
             dv.Sort = "ClassifyOne,ClassifyTwo,ClassifyThree Asc";

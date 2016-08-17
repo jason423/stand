@@ -213,7 +213,7 @@ namespace stand
                         {
                             string sqlDeleteNode = string.Format(@"delete from stand_Tree where ID ='{0}'", (((DataRow)tree_GeneralPart.SelectedNode.Tag)["ID"]).ToString());
                             SqlHelper.Query(sqlDeleteNode);
-                            DeleteChildNode((int)(((DataRow)tree_GeneralPart.SelectedNode.Tag)["ID"]));
+                            DeleteChildNode(int.Parse(((DataRow)tree_GeneralPart.SelectedNode.Tag)["ID"].ToString()));
                             tree_GeneralPart.SelectedNode.Remove();
                         }
                         catch (Exception ex)
