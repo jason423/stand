@@ -112,9 +112,18 @@ namespace stand
                 if (fi.ShowDialog() == DialogResult.OK)
                 {
                     string changeName = DateTime.Now.ToString("yyyyMMddHHmmss") + new Random().Next(1, 10000) + Path.GetExtension(fi.FilePath);
+                    string standardCode = string.Empty;
                     FTPFileUpDown.UploadFileInFTP(fi.FilePath, "standUploadFile", changeName);
                     DataTable dt = SqlHelper.Query("select max(StandardCode) from stand_File").Tables[0];
-                    string standardCode = (int.Parse(dt.Rows[0][0].ToString()) + 1).ToString();
+                    if (string.IsNullOrEmpty(dt.Rows[0][0].ToString()))
+                    {
+                         standardCode = "1";
+                    }
+                    else
+                    {
+                         standardCode = (int.Parse(dt.Rows[0][0].ToString()) + 1).ToString();
+                    }
+                    
                     string sql =
                     @"insert into stand_File(treeId,StandardNo,YearNo,CN_Name,EN_Name,StandardCode,Remark,FileName,FTPFileName,Point,UploadTime,UploadUser,IsDel,IsVerify) 
                             values(@treeId,@StandardNo,@YearNo,@CN_Name,@EN_Name,@StandardCode,@Remark,@FileName,@FTPFileName,2,'" + DateTime.Now.ToString() + "'," + Session.UserId + ",0,0)";

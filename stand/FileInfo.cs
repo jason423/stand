@@ -16,7 +16,15 @@ namespace stand
         {
             InitializeComponent();
             DataTable dt = SqlHelper.Query("select max(StandardCode) from stand_File").Tables[0];
-            txt_StandardCode.Text = (int.Parse(dt.Rows[0][0].ToString()) + 1).ToString().PadLeft(10, '0');
+            if (string.IsNullOrEmpty(dt.Rows[0][0].ToString()))
+            {
+                txt_StandardCode.Text=1.ToString().PadLeft(10, '0');
+            }
+            else
+            {
+                txt_StandardCode.Text = (int.Parse(dt.Rows[0][0].ToString()) + 1).ToString().PadLeft(10, '0');
+            }
+            
         }
         public string CNName
         {
