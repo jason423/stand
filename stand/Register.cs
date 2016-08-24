@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using PublicClass;
 
 namespace stand
 {
@@ -61,6 +63,13 @@ namespace stand
                 MessageBox.Show(@"请输入正确的邮箱!", @"邮箱错误", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
+            if (
+                SqlHelper.Query("select * from stand_User where Email=@Email",
+                    new SqlParameter("@Email", text_EMail.Text)).Tables[0].Rows.Count > 0)
+            {
+                MessageBox.Show(@"该邮箱已被注册!", @"邮箱已注册", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }          
             if (num.ToString() != txt_Pin.Text)
             {
                 MessageBox.Show(@"验证码错误!");

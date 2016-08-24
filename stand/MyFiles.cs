@@ -61,8 +61,14 @@ namespace stand
             {
                 DataTable dt =
                     SqlHelper.Query(
-                        @"select a.*,b.Code as ClassifyThree,b.PID,null as ClassifyOne ,null as ClassifyTwo,(case Isverify when 0 then '未审批' when 1 then '审批通过' when 2 then '审批未通过' end) as verify from stand_File a left join stand_Tree b on a.treeId=b.ID where UploadUser=@UploadUser",
+                        @"select a.[Id],a.[treeId],a.[StandardNo],a.[YearNo],a.[CN_Name],a.[EN_Name],cast(a.standardcode AS varchar(max))as standardcode,a.[Remark],a.[FileName]
+,a.[FTPFileName],a.[Point],a.[UploadTime],a.[UploadUser],a.[IsDel],a.[IsVerify],b.Code as ClassifyThree,b.PID,(case Isverify when 0 then '未审批' when 1 then '审批通过' when 2 then '审批未通过' end) as verify from stand_File a left join stand_Tree b on a.treeId=b.ID where UploadUser=@UploadUser",
                         new SqlParameter("@UploadUser", Session.UserId)).Tables[0];
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    dt.Rows[i]["StandardCode"] = dt.Rows[i]["StandardCode"].ToString().PadLeft(10, '0');
+
+                }
                 PublicClass.TreeMethod.GetCodeByTreeId(dt);
                 grid_StandardMgr.DataSource = dt;
             }

@@ -96,7 +96,6 @@
             // 
             // grid_StandardMgr
             // 
-            this.grid_StandardMgr.DataMember = null;
             appearance1.BackColor = System.Drawing.SystemColors.Window;
             appearance1.BorderColor = System.Drawing.SystemColors.InactiveCaption;
             this.grid_StandardMgr.DisplayLayout.Appearance = appearance1;

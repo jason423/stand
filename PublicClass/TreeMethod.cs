@@ -13,7 +13,9 @@ namespace PublicClass
         }
 
         public static  void GetCodeByTreeId(DataTable dt)
-        {           
+        {
+            dt.Columns.Add("ClassifyTwo", typeof(string));
+            dt.Columns.Add("ClassifyOne", typeof(string));
             foreach (DataRow dr in (dt.Rows))
             {
                 if (!string.IsNullOrWhiteSpace(dr["PID"].ToString()))

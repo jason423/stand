@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Model;
+using PublicClass;
 
 namespace stand
 {
@@ -36,6 +38,13 @@ namespace stand
 
         private void btn_Cancel_Click(object sender, EventArgs e)
         {
+            if (
+                SqlHelper.Query("select * from stand_User where Email=@Email",
+                    new SqlParameter("@Email", text_EMail.Text)).Tables[0].Rows.Count > 0)
+            {
+                MessageBox.Show(@"该邮箱已被注册!", @"邮箱已注册", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
             Dispose();
         }
 

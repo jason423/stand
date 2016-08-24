@@ -63,7 +63,7 @@ namespace stand
                 if (MessageBox.Show(@"确认删除?", @"确认信息", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
                     stand_User bllSu = new stand_User();
-                    bllSu.Delete(int.Parse(gridUser.ActiveRow.Cells["Id"].ToString()));
+                    bllSu.Delete(int.Parse(gridUser.ActiveRow.Cells["Id"].Value.ToString()));
 
                     //删除界面的选中行
                     gridUser.DeleteSelectedRows(false);

@@ -79,16 +79,17 @@ namespace stand
 
         private void InitTable()
         {
-            DataTable dt = SqlHelper.Query(@"select a.*,b.Code as ClassifyThree,b.PID,null as ClassifyOne ,null as ClassifyTwo,c.Account from stand_File a left join stand_Tree b on a.treeId=b.ID left join stand_User c on a.UploadUser=c.Id where a.IsDel=0 and a.IsVerify=1").Tables[0];
-            for(int i=0;i<dt.Rows.Count;i++)
-            { 
+            DataTable dt = SqlHelper.Query(@"select a.[Id],a.[treeId],a.[StandardNo],a.[YearNo],a.[CN_Name],a.[EN_Name],cast(a.standardcode AS varchar(max))as standardcode,a.[Remark],a.[FileName]
+,a.[FTPFileName],a.[Point],a.[UploadTime],a.[UploadUser],a.[IsDel],a.[IsVerify],b.Code as ClassifyThree,b.PID,c.Account from stand_File a left join stand_Tree b on a.treeId=b.ID left join stand_User c on a.UploadUser=c.Id where a.IsDel=0 and a.IsVerify=1").Tables[0];
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
                 dt.Rows[i]["StandardCode"] = dt.Rows[i]["StandardCode"].ToString().PadLeft(10, '0');
                 dt.Rows[i]["Account"] = PublicClass.EnDeCode.Decode(dt.Rows[i]["Account"].ToString());
             }
-            
+
             PublicClass.TreeMethod.GetCodeByTreeId(dt);
             dt.AcceptChanges();
-            
+
             grid_StandardMgr.DataSource = dt;
 
         }
@@ -117,13 +118,13 @@ namespace stand
                     DataTable dt = SqlHelper.Query("select max(StandardCode) from stand_File").Tables[0];
                     if (string.IsNullOrEmpty(dt.Rows[0][0].ToString()))
                     {
-                         standardCode = "1";
+                        standardCode = "1";
                     }
                     else
                     {
-                         standardCode = (int.Parse(dt.Rows[0][0].ToString()) + 1).ToString();
+                        standardCode = (int.Parse(dt.Rows[0][0].ToString()) + 1).ToString();
                     }
-                    
+
                     string sql =
                     @"insert into stand_File(treeId,StandardNo,YearNo,CN_Name,EN_Name,StandardCode,Remark,FileName,FTPFileName,Point,UploadTime,UploadUser,IsDel,IsVerify) 
                             values(@treeId,@StandardNo,@YearNo,@CN_Name,@EN_Name,@StandardCode,@Remark,@FileName,@FTPFileName,2,'" + DateTime.Now.ToString() + "'," + Session.UserId + ",0,0)";
@@ -132,10 +133,7 @@ namespace stand
                         new SqlParameter("@StandardCode", standardCode), new SqlParameter("@Remark", fi.Remark),
                         new SqlParameter("@FileName", Path.GetFileName(fi.FilePath)), new SqlParameter("@FTPFileName", changeName));
                     MessageBox.Show(@"上传成功,请等待审核通过", @"提示");
-                    BLL.stand_User suBll = new stand_User();
-                    Model.stand_User suModel = suBll.GetModel(Session.UserId);
-                    suModel.Points += 2;
-                    suBll.Update(suModel);
+
                 }
             }
             catch (Exception ex)
@@ -211,19 +209,16 @@ namespace stand
 
         private void tree_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if (tree.SelectedNode != null)
+            
+        }
+
+        private void selectChildId(ref string forS, string PID)
+        {
+            DataRow[] drs = Tree.Select("PID='" + PID + "'");
+            for (int i = 0; i < drs.Length; i++)
             {
-                if (tree.SelectedNode.FirstNode == null)
-                {
-                    DataTable dt = SqlHelper.Query(@"select a.*,b.Code as ClassifyThree,b.PID,null as ClassifyOne ,null as ClassifyTwo from stand_File a left join stand_Tree b on a.treeId=b.ID where a.IsDel=0 and a.IsVerify=1 and treeId=@treeId", new SqlParameter("@treeId", ((DataRow)tree.SelectedNode.Tag)["Id"])).Tables[0];
-                    for (int i = 0; i < dt.Rows.Count; i++)
-                    {
-                        dt.Rows[i]["StandardCode"] = dt.Rows[i]["StandardCode"].ToString().PadLeft(10, '0');
-                    }
-                    PublicClass.TreeMethod.GetCodeByTreeId(dt);
-                    dt.AcceptChanges();
-                    grid_StandardMgr.DataSource = dt;
-                }
+                forS += drs[i]["Id"] + ",";
+                selectChildId(ref forS, drs[i]["Id"].ToString());
             }
         }
     }

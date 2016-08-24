@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -84,6 +85,13 @@ namespace stand
                 if (string.IsNullOrWhiteSpace(txt_Email.Text))
                 {
                     MessageBox.Show(@"请输入邮箱!");
+                    return;
+                }
+                if (
+                SqlHelper.Query("select * from stand_User where Email=@Email",
+                    new SqlParameter("@Email", txt_Email.Text)).Tables[0].Rows.Count > 0)
+                {
+                    MessageBox.Show(@"该邮箱已被注册!", @"邮箱已注册", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
                 Regex regex = new Regex(@"^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$");
