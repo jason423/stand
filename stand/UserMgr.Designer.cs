@@ -86,7 +86,6 @@
             // 
             // gridUser
             // 
-            this.gridUser.DataMember = null;
             appearance1.BackColor = System.Drawing.SystemColors.Window;
             appearance1.BorderColor = System.Drawing.SystemColors.InactiveCaption;
             this.gridUser.DisplayLayout.Appearance = appearance1;
@@ -165,6 +164,9 @@
             this.gridUser.DisplayLayout.Override.CellAppearance = appearance8;
             this.gridUser.DisplayLayout.Override.CellClickAction = Infragistics.Win.UltraWinGrid.CellClickAction.EditAndSelectText;
             this.gridUser.DisplayLayout.Override.CellPadding = 0;
+            this.gridUser.DisplayLayout.Override.FilterClearButtonLocation = Infragistics.Win.UltraWinGrid.FilterClearButtonLocation.Cell;
+            this.gridUser.DisplayLayout.Override.FilterOperatorDefaultValue = Infragistics.Win.UltraWinGrid.FilterOperatorDefaultValue.Contains;
+            this.gridUser.DisplayLayout.Override.FilterUIType = Infragistics.Win.UltraWinGrid.FilterUIType.FilterRow;
             appearance9.BackColor = System.Drawing.SystemColors.Control;
             appearance9.BackColor2 = System.Drawing.SystemColors.ControlDark;
             appearance9.BackGradientAlignment = Infragistics.Win.GradientAlignment.Element;

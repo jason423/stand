@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -215,6 +216,7 @@ namespace stand
                             SqlHelper.Query(sqlDeleteNode);
                             DeleteChildNode(int.Parse(((DataRow)tree_GeneralPart.SelectedNode.Tag)["ID"].ToString()));
                             tree_GeneralPart.SelectedNode.Remove();
+                            MessageBox.Show("删除成功！", "提示！");
                         }
                         catch (Exception ex)
                         {
@@ -235,7 +237,7 @@ namespace stand
                 {
                     string sqlDeleteChild = string.Format(@"delete from stand_Tree where ID='{0}'", dr["ID"].ToString());
                     SqlHelper.Query(sqlDeleteChild);
-                    DeleteChildNode((int)(dr["ID"]));
+                    DeleteChildNode(int.Parse(dr["ID"].ToString()));
                 }
             }
             catch (Exception ex)
@@ -261,6 +263,7 @@ namespace stand
             this.编辑节点ToolStripMenuItem.Enabled = false;
             this.添加节点ToolStripMenuItem.Enabled = false;
             this.删除节点ToolStripMenuItem.Enabled = false;
+            this.导入树ToolStripMenuItem.Enabled = false;
             this.btn_setTree.Text = "编辑树";
 
         }
@@ -270,6 +273,7 @@ namespace stand
             this.编辑节点ToolStripMenuItem.Enabled = true;
             this.添加节点ToolStripMenuItem.Enabled = true;
             this.删除节点ToolStripMenuItem.Enabled = true;
+            this.导入树ToolStripMenuItem.Enabled = true;
             this.btn_setTree.Text = "锁定树";
         }
         private void btn_setTree_Click(object sender, EventArgs e)
@@ -296,6 +300,68 @@ namespace stand
                 txt_EN_Name.Text = ((DataRow)tree_GeneralPart.SelectedNode.Tag)["EN_Name"].ToString();
                 txt_Name.Text = ((DataRow)tree_GeneralPart.SelectedNode.Tag)["Name"].ToString();
                 txt_Remark.Text = ((DataRow)tree_GeneralPart.SelectedNode.Tag)["Remark"].ToString();
+            }
+        }
+
+        private void 导入树ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenFileDialog ofd = new OpenFileDialog();
+                ofd.Title = "Excel文件";
+                ofd.FileName = "";
+                ofd.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                ofd.Filter = "Excel文件(*.xls,*.xlsx)|*.xls;*.xlsx";
+                ofd.ValidateNames = true;
+                ofd.CheckFileExists = true;
+                ofd.CheckPathExists = true;
+                string strName = string.Empty;
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    ExcelHelper eh=new ExcelHelper(ofd.FileName);
+                    DataTable dt = eh.ExcelToDataTable("stand", true);
+                    DataRow[] pRows = dt.Select("PID is null or PID=''");
+                    if (pRows.Length > 0)
+                    {
+                        foreach (DataRow dr in pRows)
+                        {
+                            string sqlAddNewNode =
+                                string.Format(
+                                    @"insert into stand_Tree(Name,Code,EN_Name,Remark) values (@Name,@Code,@EN_Name,@Remark) ;select @@identity");
+                            //插入数据并拿出刚插入的数据的ID
+                            object newID = SqlHelper.Query(sqlAddNewNode, new SqlParameter("@Name", dr["Name"]),
+                        new SqlParameter("@Code", dr["Code"]), new SqlParameter("@EN_Name", dr["EN_Name"]),
+                        new SqlParameter("@Remark", dr["Remark"])).Tables[0].Rows[0][0];
+                            InsertChild(dr["ID"].ToString(), newID.ToString(), dt);
+                        }
+                    }
+
+                }
+            }
+            catch(Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString(), @"提示");
+                
+            }
+        }
+
+        private void InsertChild(string PId, string newPId,DataTable dt)
+        {
+            DataRow[] pRows = dt.Select("PID='"+ PId + "'");
+            if (pRows.Length > 0)
+            {
+                foreach (DataRow dr in pRows)
+                {
+                    string sqlAddNewNode =
+                        string.Format(
+                            @"insert into stand_Tree(Name,Code,EN_Name,Remark,PID) values (@Name,@Code,@EN_Name,@Remark,@PID); select @@identity");
+                    //插入数据并拿出刚插入的数据的ID
+                    object newID = SqlHelper.Query(sqlAddNewNode,new SqlParameter("@Name", dr["Name"]), 
+                        new SqlParameter("@Code", dr["Code"]), new SqlParameter("@EN_Name", dr["EN_Name"]),
+                        new SqlParameter("@Remark", dr["Remark"]), new SqlParameter("@PID", newPId)).Tables[0].Rows[0][0];
+                    InsertChild(dr["ID"].ToString(), newID.ToString(), dt);
+                }
             }
         }
     }

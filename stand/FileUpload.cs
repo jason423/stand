@@ -112,26 +112,30 @@ namespace stand
                 FileInfo fi = new FileInfo();
                 if (fi.ShowDialog() == DialogResult.OK)
                 {
-                    string changeName = DateTime.Now.ToString("yyyyMMddHHmmss") + new Random().Next(1, 10000) + Path.GetExtension(fi.FilePath);
-                    string standardCode = string.Empty;
-                    FTPFileUpDown.UploadFileInFTP(fi.FilePath, "standUploadFile", changeName);
-                    DataTable dt = SqlHelper.Query("select max(StandardCode) from stand_File").Tables[0];
-                    if (string.IsNullOrEmpty(dt.Rows[0][0].ToString()))
+                    foreach (string path in fi.FilePath)
                     {
-                        standardCode = "1";
-                    }
-                    else
-                    {
-                        standardCode = (int.Parse(dt.Rows[0][0].ToString()) + 1).ToString();
-                    }
+                        string changeName = DateTime.Now.ToString("yyyyMMddHHmmss") + new Random().Next(1, 10000) +Guid.NewGuid().ToString().Substring(0,4)+ Path.GetExtension(path);
+                        string standardCode = string.Empty;
+                        FTPFileUpDown.UploadFileInFTP(path, "standUploadFile", changeName);
+                        DataTable dt = SqlHelper.Query("select max(StandardCode) from stand_File").Tables[0];
+                        if (string.IsNullOrEmpty(dt.Rows[0][0].ToString()))
+                        {
+                            standardCode = "1";
+                        }
+                        else
+                        {
+                            standardCode = (int.Parse(dt.Rows[0][0].ToString()) + 1).ToString();
+                        }
 
-                    string sql =
-                    @"insert into stand_File(treeId,StandardNo,YearNo,CN_Name,EN_Name,StandardCode,Remark,FileName,FTPFileName,Point,UploadTime,UploadUser,IsDel,IsVerify) 
-                            values(@treeId,@StandardNo,@YearNo,@CN_Name,@EN_Name,@StandardCode,@Remark,@FileName,@FTPFileName,2,'" + DateTime.Now.ToString() + "'," + Session.UserId + ",0,0)";
-                    SqlHelper.Query(sql, new SqlParameter("@treeId", ((DataRow)tree.SelectedNode.Tag)["ID"].ToString()), new SqlParameter("@StandardNo", fi.StandardNo), new SqlParameter("@YearNo", fi.Year),
-                        new SqlParameter("@CN_Name", fi.CNName), new SqlParameter("@EN_Name", fi.EN_Name),
-                        new SqlParameter("@StandardCode", standardCode), new SqlParameter("@Remark", fi.Remark),
-                        new SqlParameter("@FileName", Path.GetFileName(fi.FilePath)), new SqlParameter("@FTPFileName", changeName));
+                        string sql =
+                        @"insert into stand_File(treeId,StandardNo,YearNo,CN_Name,EN_Name,StandardCode,Remark,FileName,FTPFileName,Point,UploadTime,UploadUser,IsDel,IsVerify) 
+                            values(@treeId,@StandardNo,@YearNo,@CN_Name,@EN_Name,@StandardCode,@Remark,@FileName,@FTPFileName,2,'" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'," + Session.UserId + ",0,0)";
+                        SqlHelper.Query(sql, new SqlParameter("@treeId", ((DataRow)tree.SelectedNode.Tag)["ID"].ToString()), new SqlParameter("@StandardNo", fi.StandardNo), new SqlParameter("@YearNo", fi.Year),
+                            new SqlParameter("@CN_Name", fi.CNName), new SqlParameter("@EN_Name", fi.EN_Name),
+                            new SqlParameter("@StandardCode", standardCode), new SqlParameter("@Remark", fi.Remark),
+                            new SqlParameter("@FileName", Path.GetFileName(path)), new SqlParameter("@FTPFileName", changeName));
+                    }
+                    
                     MessageBox.Show(@"上传成功,请等待审核通过", @"提示");
 
                 }

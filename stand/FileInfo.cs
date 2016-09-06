@@ -46,7 +46,7 @@ namespace stand
         {
             get { return txt_Year.Text; }
         }
-        public string FilePath
+        public List<string> FilePath
         {
             get { return filepath; }
         }
@@ -54,12 +54,12 @@ namespace stand
         {
             get { return txt_Remark.Text; }
         }
-        private string filepath = string.Empty;
+        private List<string> filepath = new List<string>();
         private void btn_Confirm_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(filepath))
+            if (filepath.Count==0)
             {
-                MessageBox.Show(@"请选择一个文件", @"提示");
+                MessageBox.Show(@"至少选择一个文件", @"提示");
                 return;
             }
             this.DialogResult = DialogResult.OK;
@@ -77,10 +77,11 @@ namespace stand
             ofd.ValidateNames = true;
             ofd.CheckFileExists = true;
             ofd.CheckPathExists = true;
+            ofd.Multiselect = true;
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                filepath = ofd.FileName;
-                lbl_File.Text = ofd.FileName;
+                filepath = ofd.FileNames.ToList();
+                lbl_File.Text = @"已选择"+ofd.FileNames.Length+@"个文件";
             }
         }
 

@@ -44,6 +44,7 @@
             this.添加节点ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.编辑节点ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.删除节点ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.导入树ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -170,30 +171,38 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.添加节点ToolStripMenuItem,
             this.编辑节点ToolStripMenuItem,
-            this.删除节点ToolStripMenuItem});
+            this.删除节点ToolStripMenuItem,
+            this.导入树ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 114);
             // 
             // 添加节点ToolStripMenuItem
             // 
             this.添加节点ToolStripMenuItem.Name = "添加节点ToolStripMenuItem";
-            this.添加节点ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.添加节点ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.添加节点ToolStripMenuItem.Text = "添加节点";
             this.添加节点ToolStripMenuItem.Click += new System.EventHandler(this.添加节点ToolStripMenuItem_Click);
             // 
             // 编辑节点ToolStripMenuItem
             // 
             this.编辑节点ToolStripMenuItem.Name = "编辑节点ToolStripMenuItem";
-            this.编辑节点ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.编辑节点ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.编辑节点ToolStripMenuItem.Text = "编辑节点";
             this.编辑节点ToolStripMenuItem.Click += new System.EventHandler(this.编辑节点ToolStripMenuItem_Click);
             // 
             // 删除节点ToolStripMenuItem
             // 
             this.删除节点ToolStripMenuItem.Name = "删除节点ToolStripMenuItem";
-            this.删除节点ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.删除节点ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.删除节点ToolStripMenuItem.Text = "删除节点";
             this.删除节点ToolStripMenuItem.Click += new System.EventHandler(this.删除节点ToolStripMenuItem_Click);
+            // 
+            // 导入树ToolStripMenuItem
+            // 
+            this.导入树ToolStripMenuItem.Name = "导入树ToolStripMenuItem";
+            this.导入树ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.导入树ToolStripMenuItem.Text = "导入树";
+            this.导入树ToolStripMenuItem.Click += new System.EventHandler(this.导入树ToolStripMenuItem_Click);
             // 
             // TreeMgr
             // 
@@ -229,5 +238,6 @@
         private System.Windows.Forms.ToolStripMenuItem 添加节点ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 编辑节点ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 删除节点ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 导入树ToolStripMenuItem;
     }
 }
